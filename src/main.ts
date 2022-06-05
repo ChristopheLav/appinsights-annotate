@@ -5,10 +5,6 @@ import axiosRetry from 'axios-retry'
 
 const retryAttempt = 3
 
-axios({
-  maxRedirects: 0
-})
-
 axiosRetry(axios, {
   retries: retryAttempt,
   retryDelay: retryCount => {
@@ -56,10 +52,13 @@ async function run(): Promise<void> {
       var endpoint = ''
       await axios
         .get(
-          'http://go.microsoft.com/fwlink/?prd=11901&pver=1.0&sbp=Application%20Insights&plcid=0x409&clcid=0x409&ar=Annotations&sar=Create%20Annotation'
+          'http://go.microsoft.com/fwlink/?prd=11901&pver=1.0&sbp=Application%20Insights&plcid=0x409&clcid=0x409&ar=Annotations&sar=Create%20Annotation',
+          {maxRedirects: 0}
         )
         .then(response => {
-          endpoint = response.headers['location']
+          endpoint = response.headers.location
+          console.log(endpoint)
+          console.log(response.headers)
         })
         .catch(err => {
           if (err.response.status !== 200) {

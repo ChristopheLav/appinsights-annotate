@@ -47,9 +47,6 @@ const uuid_1 = __nccwpck_require__(5840);
 const axios_1 = __importDefault(__nccwpck_require__(6545));
 const axios_retry_1 = __importDefault(__nccwpck_require__(9179));
 const retryAttempt = 3;
-(0, axios_1.default)({
-    maxRedirects: 0
-});
 (0, axios_retry_1.default)(axios_1.default, {
     retries: retryAttempt,
     retryDelay: retryCount => {
@@ -93,9 +90,11 @@ function run() {
                 core.debug(`Locating Azure endpoint`);
                 var endpoint = '';
                 yield axios_1.default
-                    .get('http://go.microsoft.com/fwlink/?prd=11901&pver=1.0&sbp=Application%20Insights&plcid=0x409&clcid=0x409&ar=Annotations&sar=Create%20Annotation')
+                    .get('http://go.microsoft.com/fwlink/?prd=11901&pver=1.0&sbp=Application%20Insights&plcid=0x409&clcid=0x409&ar=Annotations&sar=Create%20Annotation', { maxRedirects: 0 })
                     .then(response => {
-                    endpoint = response.headers['location'];
+                    endpoint = response.headers.location;
+                    console.log(endpoint);
+                    console.log(response.headers);
                 })
                     .catch(err => {
                     if (err.response.status !== 200) {

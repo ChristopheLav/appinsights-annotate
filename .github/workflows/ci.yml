@@ -4,10 +4,14 @@ on:
   pull_request:
     paths-ignore:
       - '**.md'
+      - 'imgs\*'
   push:
     branches:
       - main
       - releases/*
+    paths-ignore:
+      - '**.md'
+      - 'imgs\*'
 
 jobs:
   build:
@@ -27,7 +31,7 @@ jobs:
     needs: build
     strategy:
       matrix:
-        runs-on: [ubuntu-latest, macos-latest, windows-latest]
+        runs-on: [ ubuntu-latest, macos-latest, windows-latest ]
     runs-on: ${{ matrix.runs-on }}
 
     steps:

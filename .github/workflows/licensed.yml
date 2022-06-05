@@ -1,8 +1,16 @@
 name: Licensed
 
 on:
-  push: {branches: main}
-  pull_request: {branches: main}
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - '**.md'
+      - 'imgs\*'
+  pull_request:
+    paths-ignore:
+      - '**.md'
+      - 'imgs\*'
 
 jobs:
   test:

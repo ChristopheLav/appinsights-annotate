@@ -10,9 +10,11 @@ on:
       - main
     paths-ignore:
       - '**.md'
+      - 'imgs\*'
   pull_request:
     paths-ignore:
       - '**.md'
+      - 'imgs\*'
   workflow_dispatch:
 
 jobs:

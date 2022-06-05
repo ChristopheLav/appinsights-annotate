@@ -90,11 +90,13 @@ function run() {
                 core.debug(`Locating Azure endpoint`);
                 var endpoint = '';
                 yield axios_1.default
-                    .get('http://go.microsoft.com/fwlink/?prd=11901&pver=1.0&sbp=Application%20Insights&plcid=0x409&clcid=0x409&ar=Annotations&sar=Create%20Annotation', { maxRedirects: 0, validateStatus: null })
+                    .get('http://go.microsoft.com/fwlink/?prd=11901&pver=1.0&sbp=Application%20Insights&plcid=0x409&clcid=0x409&ar=Annotations&sar=Create%20Annotation', {
+                    maxRedirects: 0,
+                    validateStatus: null
+                })
                     .then(response => {
                     endpoint = response.headers.location;
-                    console.log(endpoint);
-                    console.log(response.headers);
+                    core.debug(`Locating Azure endpoint found: ` + endpoint);
                 })
                     .catch(err => {
                     if (err.response.status !== 200) {

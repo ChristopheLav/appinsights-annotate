@@ -60,8 +60,7 @@ async function run(): Promise<void> {
         )
         .then(response => {
           endpoint = response.headers.location
-          console.log(endpoint)
-          console.log(response.headers)
+          core.debug(`Locating Azure endpoint found: ` + endpoint)
         })
         .catch(err => {
           if (err.response.status !== 200) {

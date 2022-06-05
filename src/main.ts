@@ -53,7 +53,10 @@ async function run(): Promise<void> {
       await axios
         .get(
           'http://go.microsoft.com/fwlink/?prd=11901&pver=1.0&sbp=Application%20Insights&plcid=0x409&clcid=0x409&ar=Annotations&sar=Create%20Annotation',
-          {maxRedirects: 0}
+          {
+            maxRedirects: 0,
+            validateStatus: null
+          }
         )
         .then(response => {
           endpoint = response.headers.location

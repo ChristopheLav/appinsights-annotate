@@ -31,7 +31,7 @@ It is recommended to put the API Key into a GitHub secret to prevent clear value
 
 <!-- start usage -->
 ```yaml
-- uses: ChristopheLav/appinsights-annotate@v3
+- uses: ChristopheLav/appinsights-annotate@v1
   with:
     # The `Application ID` of the Application Insights resource (available in the
     # Azure Portal under `API Access`).

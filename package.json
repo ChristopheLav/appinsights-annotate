@@ -1,0 +1,46 @@
+{
+  "name": "appinsights-annotate",
+  "version": "1.0.0",
+  "description": "A Github Action that creates deployment annotations in Application Insights",
+  "main": "lib/main.js",
+  "scripts": {
+    "build": "tsc && ncc build && node lib/misc/generate-docs.js",
+    "format": "prettier --write '**/*.ts'",
+    "format-check": "prettier --check '**/*.ts'",
+    "lint": "eslint src/**/*.ts",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "licensed-check": "src/misc/licensed-check.sh",
+    "licensed-generate": "src/misc/licensed-generate.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ChristopheLav/appinsights-annotate.git"
+  },
+  "keywords": [
+    "actions",
+    "node",
+    "application-insights"
+  ],
+  "author": "Christophe Lavalle",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ChristopheLav/appinsights-annotate/issues"
+  },
+  "homepage": "https://github.com/ChristopheLav/appinsights-annotate#readme",
+  "dependencies": {
+    "@actions/core": "^1.8.2",
+    "axios": "^0.27.2",
+    "axios-retry": "^3.2.5",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "@types/node": "^16.11.38",
+    "@typescript-eslint/parser": "^5.27.0",
+    "@vercel/ncc": "^0.34.0",
+    "eslint": "^8.17.0",
+    "eslint-plugin-github": "^4.3.6",
+    "js-yaml": "^4.1.0",
+    "prettier": "^2.6.2",
+    "typescript": "^4.7.3"
+  }
+}

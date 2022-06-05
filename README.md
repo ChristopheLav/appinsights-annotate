@@ -15,7 +15,7 @@ You need to set an annotation name, but the extension also publish automatically
 - `By` with value of `${{ github.actor }}`
 - `Message` with value of `${{ github.event.head_commit.message }}`
 
-[SCREENSHOT]
+![Example of a deployment annotation](imgs/deployment-annotation.png)
 
 ## What's new
 

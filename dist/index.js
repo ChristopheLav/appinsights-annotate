@@ -47,6 +47,9 @@ const uuid_1 = __nccwpck_require__(5840);
 const axios_1 = __importDefault(__nccwpck_require__(6545));
 const axios_retry_1 = __importDefault(__nccwpck_require__(9179));
 const retryAttempt = 3;
+(0, axios_1.default)({
+    maxRedirects: 0
+});
 (0, axios_retry_1.default)(axios_1.default, {
     retries: retryAttempt,
     retryDelay: retryCount => {

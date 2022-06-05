@@ -5,6 +5,10 @@ import axiosRetry from 'axios-retry'
 
 const retryAttempt = 3
 
+axios({
+  maxRedirects: 0
+})
+
 axiosRetry(axios, {
   retries: retryAttempt,
   retryDelay: retryCount => {

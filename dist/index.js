@@ -43,7 +43,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const core = __importStar(__nccwpck_require__(2186));
-const uuid_1 = __importDefault(__nccwpck_require__(5840));
+const uuid_1 = __nccwpck_require__(5840);
 const axios_1 = __importDefault(__nccwpck_require__(6545));
 const axios_retry_1 = __importDefault(__nccwpck_require__(9179));
 const retryAttempt = 3;
@@ -81,7 +81,7 @@ function run() {
                     Message: process.env.GITHUB_
                 };
                 const body = {
-                    Id: (0, uuid_1.default)(),
+                    Id: (0, uuid_1.v4)(),
                     AnnotationName: name,
                     EventTime: new Date().toISOString(),
                     Category: 'Deployment',

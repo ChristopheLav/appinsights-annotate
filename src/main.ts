@@ -1,5 +1,5 @@
 import * as core from '@actions/core'
-import {default as uuid} from 'uuid'
+import {v4 as uuidv4} from 'uuid'
 import axios from 'axios'
 import axiosRetry from 'axios-retry'
 
@@ -41,7 +41,7 @@ async function run(): Promise<void> {
       }
 
       const body = {
-        Id: uuid(),
+        Id: uuidv4(),
         AnnotationName: name,
         EventTime: new Date().toISOString(),
         Category: 'Deployment',

@@ -1,4 +1,4 @@
-name: 'Publish a deployment annotation to Application Insights'
+name: 'Application Insights Annotate'
 description: 'Collect run metadata and publish a deployment annotation to Application Insights to track deployments'
 inputs:
   app-id:

@@ -1,6 +1,6 @@
 # Application Insights Annotate action
 
-[WORKFLOW BADGE]
+[![Build and Test](https://github.com/ChristopheLav/appinsights-annotate/actions/workflows/ci.yml/badge.svg)](https://github.com/ChristopheLav/appinsights-annotate/actions/workflows/ci.yml)
 
 This action collect run metadata and publish a deployment annotation to Application Insights that allow to track deployments.
 
@@ -41,8 +41,8 @@ It is recommended to put the API Key into a GitHub secret to prevent clear value
     # the Azure Portal under `API Access` (`Wite annotations` permission is required).
     api-key: ''
 
-    # Name of your deployment. You can set the version number or use the value `${{
-    # github.event.head_commit.message }}` to set the last commit message.
+    # Name of your deployment. You can set the version number or use the value
+    # `github.event.head_commit.message` to set the last commit message.
     name: ''
 
     # Allows to treat error as warning to prevent worlflow failure. It is may not

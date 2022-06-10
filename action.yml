@@ -15,7 +15,7 @@ inputs:
       You can set the version number or use the value `github.event.head_commit.message` to set the last commit message.
     required: true
   treat-error-as-warning:
-    description: 'Allows to treat error as warning to prevent worlflow failure. It is may not important in some cases if the annocation can not be created.'
+    description: 'Allows to treat error as warning to prevent worlflow failure. It is may not important in some cases if the annotation can not be created.'
     default: false
 runs:
   using: 'node16'

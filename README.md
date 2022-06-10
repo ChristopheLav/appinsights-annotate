@@ -1,6 +1,6 @@
 # Application Insights Annotate action
 
-[![Build and Test](https://github.com/ChristopheLav/appinsights-annotate/actions/workflows/ci.yml/badge.svg)](https://github.com/ChristopheLav/appinsights-annotate/actions/workflows/ci.yml)
+[![Build and Checks](https://github.com/ChristopheLav/appinsights-annotate/actions/workflows/ci.yml/badge.svg)](https://github.com/ChristopheLav/appinsights-annotate/actions/workflows/ci.yml) [![Test](https://github.com/ChristopheLav/appinsights-annotate/actions/workflows/test.yml/badge.svg)](https://github.com/ChristopheLav/appinsights-annotate/actions/workflows/test.yml)
 
 This action collect run metadata and publish a deployment annotation to Application Insights that allow to track deployments.
 
@@ -46,9 +46,9 @@ It is recommended to put the API Key into a GitHub secret to prevent clear value
     name: ''
 
     # Allows to treat error as warning to prevent worlflow failure. It is may not
-    # important in some cases if the annocation can not be created.
+    # important in some cases if the annotation can not be created.
     # Default: false
-    treat-error-as-warning: ''
+    treat-error-as-warning: false
 ```
 <!-- end usage -->
 

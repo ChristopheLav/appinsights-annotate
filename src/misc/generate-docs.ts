@@ -103,10 +103,13 @@ function updateUsage(
 
       // Default
       newReadme.push(`    # Default: ${input.default}`)
-    }
 
-    // Input name
-    newReadme.push(`    ${key}: ''`)
+      // Input name
+      newReadme.push(`    ${key}: ${input.default}`)
+    } else {
+      // Input name
+      newReadme.push(`    ${key}: ''`)
+    }
 
     firstInput = false
   }

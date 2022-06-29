@@ -9786,6 +9786,8 @@ function shouldRetry(_x, _x2, _x3, _x4) {
  *        A function to determine if the error can be retried
  * @param {Function} [defaultOptions.retryDelay=noDelay]
  *        A function to determine the delay between retry requests
+ * @param {Function} [defaultOptions.onRetry=()=>{}]
+ *        A function to get notified when a retry occurs
  */
 
 
@@ -9837,7 +9839,7 @@ function axiosRetry(axios, defaultOptions) {
   });
   axios.interceptors.response.use(null, /*#__PURE__*/function () {
     var _ref = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee(error) {
-      var config, _getRequestOptions, _getRequestOptions$re, retries, _getRequestOptions$re2, retryCondition, _getRequestOptions$re3, retryDelay, _getRequestOptions$sh, shouldResetTimeout, currentState, delay, lastRequestDuration;
+      var config, _getRequestOptions, _getRequestOptions$re, retries, _getRequestOptions$re2, retryCondition, _getRequestOptions$re3, retryDelay, _getRequestOptions$sh, shouldResetTimeout, _getRequestOptions$on, onRetry, currentState, delay, lastRequestDuration;
 
       return _regenerator.default.wrap(function _callee$(_context) {
         while (1) {
@@ -9853,14 +9855,14 @@ function axiosRetry(axios, defaultOptions) {
               return _context.abrupt("return", Promise.reject(error));
 
             case 3:
-              _getRequestOptions = getRequestOptions(config, defaultOptions), _getRequestOptions$re = _getRequestOptions.retries, retries = _getRequestOptions$re === void 0 ? 3 : _getRequestOptions$re, _getRequestOptions$re2 = _getRequestOptions.retryCondition, retryCondition = _getRequestOptions$re2 === void 0 ? isNetworkOrIdempotentRequestError : _getRequestOptions$re2, _getRequestOptions$re3 = _getRequestOptions.retryDelay, retryDelay = _getRequestOptions$re3 === void 0 ? noDelay : _getRequestOptions$re3, _getRequestOptions$sh = _getRequestOptions.shouldResetTimeout, shouldResetTimeout = _getRequestOptions$sh === void 0 ? false : _getRequestOptions$sh;
+              _getRequestOptions = getRequestOptions(config, defaultOptions), _getRequestOptions$re = _getRequestOptions.retries, retries = _getRequestOptions$re === void 0 ? 3 : _getRequestOptions$re, _getRequestOptions$re2 = _getRequestOptions.retryCondition, retryCondition = _getRequestOptions$re2 === void 0 ? isNetworkOrIdempotentRequestError : _getRequestOptions$re2, _getRequestOptions$re3 = _getRequestOptions.retryDelay, retryDelay = _getRequestOptions$re3 === void 0 ? noDelay : _getRequestOptions$re3, _getRequestOptions$sh = _getRequestOptions.shouldResetTimeout, shouldResetTimeout = _getRequestOptions$sh === void 0 ? false : _getRequestOptions$sh, _getRequestOptions$on = _getRequestOptions.onRetry, onRetry = _getRequestOptions$on === void 0 ? function () {} : _getRequestOptions$on;
               currentState = getCurrentState(config);
               _context.next = 7;
               return shouldRetry(retries, retryCondition, currentState, error);
 
             case 7:
               if (!_context.sent) {
-                _context.next = 14;
+                _context.next = 15;
                 break;
               }
 
@@ -9879,16 +9881,17 @@ function axiosRetry(axios, defaultOptions) {
               config.transformRequest = [function (data) {
                 return data;
               }];
+              onRetry(currentState.retryCount, error, config);
               return _context.abrupt("return", new Promise(function (resolve) {
                 return setTimeout(function () {
                   return resolve(axios(config));
                 }, delay);
               }));
 
-            case 14:
+            case 15:
               return _context.abrupt("return", Promise.reject(error));
 
-            case 15:
+            case 16:
             case "end":
               return _context.stop();
           }

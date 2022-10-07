@@ -62,7 +62,7 @@ async function run(): Promise<void> {
           // if (response.headers.location === undefined) {
           //   throw new Error(`Unable to locate the Azure endpoint (undefined)`)
           // }
-          endpoint = response.headers.location ?? ""
+          endpoint = response.headers?.location ?? ""
           core.debug(`Locating Azure endpoint found: ` + endpoint)
         })
         .catch(err => {

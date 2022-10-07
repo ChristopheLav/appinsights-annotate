@@ -95,11 +95,11 @@ function run() {
                     validateStatus: null
                 })
                     .then(response => {
-                    var _a;
+                    var _a, _b;
                     // if (response.headers.location === undefined) {
                     //   throw new Error(`Unable to locate the Azure endpoint (undefined)`)
                     // }
-                    endpoint = (_a = response.headers.location) !== null && _a !== void 0 ? _a : "";
+                    endpoint = (_b = (_a = response.headers) === null || _a === void 0 ? void 0 : _a.location) !== null && _b !== void 0 ? _b : "";
                     core.debug(`Locating Azure endpoint found: ` + endpoint);
                 })
                     .catch(err => {

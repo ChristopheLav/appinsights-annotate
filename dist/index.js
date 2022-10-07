@@ -54,9 +54,9 @@ const retryAttempt = 3;
         return retryCount * 1000; // time interval between retries, with 1s, 2s, 3s
     },
     // retry on error greater than 500
-    retryCondition: error => {
-        return !error.response || error.response.status >= 500;
-    }
+    // retryCondition: error => {
+    //   return !error.response || error.response.status >= 500
+    // }
 });
 function run() {
     var _a, _b;
@@ -95,17 +95,14 @@ function run() {
                     validateStatus: null
                 })
                     .then(response => {
-                    var _a, _b;
-                    // if (response.headers.location === undefined) {
-                    //   throw new Error(`Unable to locate the Azure endpoint (undefined)`)
-                    // }
-                    endpoint = (_b = (_a = response.headers) === null || _a === void 0 ? void 0 : _a.location) !== null && _b !== void 0 ? _b : "";
+                    var _a;
+                    if (((_a = response.headers) === null || _a === void 0 ? void 0 : _a.location) === undefined) {
+                        throw new Error(`Unable to locate the Azure endpoint (undefined)`);
+                    }
+                    endpoint = response.headers.location;
                     core.debug(`Locating Azure endpoint found: ` + endpoint);
                 })
                     .catch(err => {
-                    console.log("ERR" + err);
-                    console.log("ERR1" + err.response);
-                    console.log("ERR2" + err.response.status);
                     if (err.response.status !== 200) {
                         throw new Error(`Failed to locate the Azure endpoint with status code: ${err.response.status} after ${retryAttempt} retry attempts`);
                     }

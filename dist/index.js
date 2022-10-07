@@ -95,7 +95,8 @@ function run() {
                     validateStatus: null
                 })
                     .then(response => {
-                    if (response.headers.location == undefined) {
+                    var _a;
+                    if (((_a = response.headers) === null || _a === void 0 ? void 0 : _a.location) == undefined) {
                         throw new Error(`Unable to locate the Azure endpoint (undefined)`);
                     }
                     endpoint = response.headers.location;
@@ -7946,7 +7947,7 @@ axiosRetry.isRetryableError = isRetryableError;
 /***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
 
 "use strict";
-// Axios v1.0.0 Copyright (c) 2022 Matt Zabriskie and contributors
+// Axios v1.1.2 Copyright (c) 2022 Matt Zabriskie and contributors
 
 
 const FormData$1 = __nccwpck_require__(4334);
@@ -8106,7 +8107,7 @@ const isPlainObject = (val) => {
   }
 
   const prototype = getPrototypeOf(val);
-  return prototype === null || prototype === Object.prototype;
+  return (prototype === null || prototype === Object.prototype || Object.getPrototypeOf(prototype) === null) && !(Symbol.toStringTag in val) && !(Symbol.iterator in val);
 };
 
 /**
@@ -9261,7 +9262,7 @@ function buildFullPath(baseURL, requestedURL) {
   return requestedURL;
 }
 
-const VERSION = "1.0.0";
+const VERSION = "1.1.2";
 
 /**
  * A `CanceledError` is an object that is thrown when an operation is canceled.
@@ -10199,9 +10200,14 @@ function httpAdapter(config) {
 
     auth && headers.delete('authorization');
 
-    const path = parsed.pathname.concat(parsed.searchParams);
+    let path;
+
     try {
-      buildURL(path, config.params, config.paramsSerializer).replace(/^\?/, '');
+      path = buildURL(
+        parsed.pathname + parsed.search,
+        config.params,
+        config.paramsSerializer
+      ).replace(/^\?/, '');
     } catch (err) {
       const customErr = new Error(err.message);
       customErr.config = config;
@@ -10213,7 +10219,7 @@ function httpAdapter(config) {
     headers.set('Accept-Encoding', 'gzip, deflate, br', false);
 
     const options = {
-      path: buildURL(path, config.params, config.paramsSerializer).replace(/^\?/, ''),
+      path,
       method: method,
       headers: headers.toJSON(),
       agents: { http: config.httpAgent, https: config.httpsAgent },

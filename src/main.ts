@@ -13,9 +13,9 @@ axiosRetry(axios, {
   },
 
   // retry on error greater than 500
-  retryCondition: error => {
-    return !error.response || error.response.status >= 500
-  }
+  // retryCondition: error => {
+  //   return !error.response || error.response.status >= 500
+  // }
 })
 
 async function run(): Promise<void> {

@@ -54,9 +54,9 @@ const retryAttempt = 3;
         return retryCount * 1000; // time interval between retries, with 1s, 2s, 3s
     },
     // retry on error greater than 500
-    retryCondition: error => {
-        return !error.response || error.response.status >= 500;
-    }
+    // retryCondition: error => {
+    //   return !error.response || error.response.status >= 500
+    // }
 });
 function run() {
     var _a, _b;

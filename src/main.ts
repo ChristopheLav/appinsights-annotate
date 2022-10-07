@@ -66,6 +66,9 @@ async function run(): Promise<void> {
           core.debug(`Locating Azure endpoint found: ` + endpoint)
         })
         .catch(err => {
+          console.log("ERR" + err);
+          console.log("ERR1" + err.response);
+          console.log("ERR2" + err.response.status);
           if (err.response.status !== 200) {
             throw new Error(
               `Failed to locate the Azure endpoint with status code: ${err.response.status} after ${retryAttempt} retry attempts`

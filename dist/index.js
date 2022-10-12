@@ -55,6 +55,7 @@ const retryAttempt = 3;
     },
     // retry on error greater than 500
     retryCondition: error => {
+        core.error(error);
         return !error.response || error.response.status >= 500;
     }
 });

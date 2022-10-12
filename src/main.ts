@@ -5,19 +5,18 @@ import axiosRetry from 'axios-retry'
 
 const retryAttempt = 3
 
-axiosRetry(axios, {
-  retries: retryAttempt,
-  retryDelay: retryCount => {
-    core.info(`retrying to send pages telemetry with attempt: ${retryCount}`)
-    return retryCount * 1000 // time interval between retries, with 1s, 2s, 3s
-  },
+// axiosRetry(axios, {
+//   retries: retryAttempt,
+//   retryDelay: retryCount => {
+//     core.info(`retrying to send pages telemetry with attempt: ${retryCount}`)
+//     return retryCount * 1000 // time interval between retries, with 1s, 2s, 3s
+//   },
 
-  // retry on error greater than 500
-  retryCondition: error => {
-    core.error(error)
-    return !error.response || error.response.status >= 500
-  }
-})
+//   // retry on error greater than 500
+//   retryCondition: error => {
+//     return !error.response || error.response.status >= 500
+//   }
+// })
 
 async function run(): Promise<void> {
   try {

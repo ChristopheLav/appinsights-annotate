@@ -14,6 +14,8 @@ axiosRetry(axios, {
 
   // retry on error greater than 500
   retryCondition: error => {
+    console.log(error)
+    console.log(error.response)
     return !error.response || error.response.status >= 500
   }
 })

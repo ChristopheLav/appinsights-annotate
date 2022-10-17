@@ -7946,7 +7946,7 @@ axiosRetry.isRetryableError = isRetryableError;
 /***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
 
 "use strict";
-// Axios v1.0.0 Copyright (c) 2022 Matt Zabriskie and contributors
+// Axios v1.1.3 Copyright (c) 2022 Matt Zabriskie and contributors
 
 
 const FormData$1 = __nccwpck_require__(4334);
@@ -8106,7 +8106,7 @@ const isPlainObject = (val) => {
   }
 
   const prototype = getPrototypeOf(val);
-  return prototype === null || prototype === Object.prototype;
+  return (prototype === null || prototype === Object.prototype || Object.getPrototypeOf(prototype) === null) && !(Symbol.toStringTag in val) && !(Symbol.iterator in val);
 };
 
 /**
@@ -8845,7 +8845,7 @@ function toFormData(obj, formData, options) {
         key = removeBrackets(key);
 
         arr.forEach(function each(el, index) {
-          !utils.isUndefined(el) && formData.append(
+          !(utils.isUndefined(el) || el === null) && formData.append(
             // eslint-disable-next-line no-nested-ternary
             indexes === true ? renderKey([key], index, dots) : (indexes === null ? key : key + '[]'),
             convertValue(el)
@@ -8882,7 +8882,7 @@ function toFormData(obj, formData, options) {
     stack.push(value);
 
     utils.forEach(value, function each(el, key) {
-      const result = !utils.isUndefined(el) && visitor.call(
+      const result = !(utils.isUndefined(el) || el === null) && visitor.call(
         formData, el, utils.isString(key) ? key.trim() : key, path, exposedHelpers
       );
 
@@ -8988,21 +8988,28 @@ function buildURL(url, params, options) {
   if (!params) {
     return url;
   }
-
-  const hashmarkIndex = url.indexOf('#');
-
-  if (hashmarkIndex !== -1) {
-    url = url.slice(0, hashmarkIndex);
-  }
-
+  
   const _encode = options && options.encode || encode;
 
-  const serializerParams = utils.isURLSearchParams(params) ?
-    params.toString() :
-    new AxiosURLSearchParams(params, options).toString(_encode);
+  const serializeFn = options && options.serialize;
 
-  if (serializerParams) {
-    url += (url.indexOf('?') === -1 ? '?' : '&') + serializerParams;
+  let serializedParams;
+
+  if (serializeFn) {
+    serializedParams = serializeFn(params, options);
+  } else {
+    serializedParams = utils.isURLSearchParams(params) ?
+      params.toString() :
+      new AxiosURLSearchParams(params, options).toString(_encode);
+  }
+
+  if (serializedParams) {
+    const hashmarkIndex = url.indexOf("#");
+
+    if (hashmarkIndex !== -1) {
+      url = url.slice(0, hashmarkIndex);
+    }
+    url += (url.indexOf('?') === -1 ? '?' : '&') + serializedParams;
   }
 
   return url;
@@ -9261,7 +9268,7 @@ function buildFullPath(baseURL, requestedURL) {
   return requestedURL;
 }
 
-const VERSION = "1.0.0";
+const VERSION = "1.1.3";
 
 /**
  * A `CanceledError` is an object that is thrown when an operation is canceled.
@@ -9399,7 +9406,7 @@ function normalizeValue(value) {
     return value;
   }
 
-  return String(value);
+  return utils.isArray(value) ? value.map(normalizeValue) : String(value);
 }
 
 function parseTokens(str) {
@@ -9486,13 +9493,7 @@ Object.assign(AxiosHeaders.prototype, {
         return;
       }
 
-      if (utils.isArray(_value)) {
-        _value = _value.map(normalizeValue);
-      } else {
-        _value = normalizeValue(_value);
-      }
-
-      self[key || _header] = _value;
+      self[key || _header] = normalizeValue(_value);
     }
 
     if (utils.isPlainObject(header)) {
@@ -9606,13 +9607,13 @@ Object.assign(AxiosHeaders.prototype, {
     return this;
   },
 
-  toJSON: function() {
+  toJSON: function(asStrings) {
     const obj = Object.create(null);
 
     utils.forEach(Object.assign({}, this[$defaults] || null, this),
       (value, header) => {
         if (value == null || value === false) return;
-        obj[header] = utils.isArray(value) ? value.join(', ') : value;
+        obj[header] = asStrings && utils.isArray(value) ? value.join(', ') : value;
       });
 
     return obj;
@@ -9951,7 +9952,7 @@ function dispatchBeforeRedirect(options) {
  * If the proxy or config afterRedirects functions are defined, call them with the options
  *
  * @param {http.ClientRequestArgs} options
- * @param {AxiosProxyConfig} configProxy
+ * @param {AxiosProxyConfig} configProxy configuration from Axios options object
  * @param {string} location
  *
  * @returns {http.ClientRequestArgs}
@@ -9982,13 +9983,14 @@ function setProxy(options, configProxy, location) {
     }
 
     options.headers.host = options.hostname + (options.port ? ':' + options.port : '');
-    options.hostname = proxy.hostname;
+    const proxyHost = proxy.hostname || proxy.host;
+    options.hostname = proxyHost;
     // Replace 'host' since options is not a URL object
-    options.host = proxy.hostname;
+    options.host = proxyHost;
     options.port = proxy.port;
     options.path = location;
     if (proxy.protocol) {
-      options.protocol = proxy.protocol;
+      options.protocol = proxy.protocol.includes(':') ? proxy.protocol : `${proxy.protocol}:`;
     }
   }
 
@@ -10199,9 +10201,14 @@ function httpAdapter(config) {
 
     auth && headers.delete('authorization');
 
-    const path = parsed.pathname.concat(parsed.searchParams);
+    let path;
+
     try {
-      buildURL(path, config.params, config.paramsSerializer).replace(/^\?/, '');
+      path = buildURL(
+        parsed.pathname + parsed.search,
+        config.params,
+        config.paramsSerializer
+      ).replace(/^\?/, '');
     } catch (err) {
       const customErr = new Error(err.message);
       customErr.config = config;
@@ -10213,7 +10220,7 @@ function httpAdapter(config) {
     headers.set('Accept-Encoding', 'gzip, deflate, br', false);
 
     const options = {
-      path: buildURL(path, config.params, config.paramsSerializer).replace(/^\?/, ''),
+      path,
       method: method,
       headers: headers.toJSON(),
       agents: { http: config.httpAgent, https: config.httpsAgent },
@@ -11344,7 +11351,7 @@ class Axios {
 
     config = mergeConfig(this.defaults, config);
 
-    const transitional = config.transitional;
+    const {transitional, paramsSerializer} = config;
 
     if (transitional !== undefined) {
       validator.assertOptions(transitional, {
@@ -11352,6 +11359,13 @@ class Axios {
         forcedJSONParsing: validators.transitional(validators.boolean),
         clarifyTimeoutError: validators.transitional(validators.boolean)
       }, false);
+    }
+
+    if (paramsSerializer !== undefined) {
+      validator.assertOptions(paramsSerializer, {
+        encode: validators.function,
+        serialize: validators.function
+      }, true);
     }
 
     // Set config.method

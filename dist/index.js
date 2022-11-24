@@ -55,8 +55,6 @@ const retryAttempt = 3;
     },
     // retry on error greater than 500
     retryCondition: error => {
-        console.log(error);
-        console.log(error.response);
         return !error.response || error.response.status >= 500;
     }
 });
@@ -104,8 +102,6 @@ function run() {
                     core.debug(`Locating Azure endpoint found: ` + endpoint);
                 })
                     .catch(err => {
-                    console.log(err);
-                    console.log(err.response);
                     if (err.response.status !== 200) {
                         throw new Error(`Failed to locate the Azure endpoint with status code: ${err.response.status} after ${retryAttempt} retry attempts`);
                     }
@@ -123,8 +119,6 @@ function run() {
                     }
                 })
                     .catch(err => {
-                    console.log(err);
-                    console.log(err.response);
                     if (err.response.status !== 200) {
                         throw new Error(`Failed to create the deployment annotation with status code: ${err.response.status} after ${retryAttempt} retry attempts`);
                     }

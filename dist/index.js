@@ -7610,6 +7610,7 @@ __webpack_unused_export__ = isIdempotentRequestError;
 __webpack_unused_export__ = isNetworkOrIdempotentRequestError;
 __webpack_unused_export__ = exponentialDelay;
 exports.ZP = axiosRetry;
+__webpack_unused_export__ = void 0;
 
 var _regenerator = _interopRequireDefault(__nccwpck_require__(4210));
 
@@ -7630,6 +7631,8 @@ var namespace = 'axios-retry';
  * @param  {Error}  error
  * @return {boolean}
  */
+
+__webpack_unused_export__ = namespace;
 
 function isNetworkError(error) {
   return !error.response && Boolean(error.code) && // Prevents retrying cancelled requests
@@ -7865,7 +7868,7 @@ function axiosRetry(axios, defaultOptions) {
   });
   axios.interceptors.response.use(null, /*#__PURE__*/function () {
     var _ref = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee(error) {
-      var config, _getRequestOptions, _getRequestOptions$re, retries, _getRequestOptions$re2, retryCondition, _getRequestOptions$re3, retryDelay, _getRequestOptions$sh, shouldResetTimeout, _getRequestOptions$on, onRetry, currentState, delay, lastRequestDuration;
+      var config, _getRequestOptions, _getRequestOptions$re, retries, _getRequestOptions$re2, retryCondition, _getRequestOptions$re3, retryDelay, _getRequestOptions$sh, shouldResetTimeout, _getRequestOptions$on, onRetry, currentState, delay, lastRequestDuration, timeout;
 
       return _regenerator.default.wrap(function _callee$(_context) {
         while (1) {
@@ -7888,7 +7891,7 @@ function axiosRetry(axios, defaultOptions) {
 
             case 7:
               if (!_context.sent) {
-                _context.next = 15;
+                _context.next = 20;
                 break;
               }
 
@@ -7898,12 +7901,25 @@ function axiosRetry(axios, defaultOptions) {
 
               fixConfig(axios, config);
 
-              if (!shouldResetTimeout && config.timeout && currentState.lastRequestTime) {
-                lastRequestDuration = Date.now() - currentState.lastRequestTime; // Minimum 1ms timeout (passing 0 or less to XHR means no timeout)
-
-                config.timeout = Math.max(config.timeout - lastRequestDuration - delay, 1);
+              if (!(!shouldResetTimeout && config.timeout && currentState.lastRequestTime)) {
+                _context.next = 17;
+                break;
               }
 
+              lastRequestDuration = Date.now() - currentState.lastRequestTime;
+              timeout = config.timeout - lastRequestDuration - delay;
+
+              if (!(timeout <= 0)) {
+                _context.next = 16;
+                break;
+              }
+
+              return _context.abrupt("return", Promise.reject(error));
+
+            case 16:
+              config.timeout = timeout;
+
+            case 17:
               config.transformRequest = [function (data) {
                 return data;
               }];
@@ -7914,10 +7930,10 @@ function axiosRetry(axios, defaultOptions) {
                 }, delay);
               }));
 
-            case 15:
+            case 20:
               return _context.abrupt("return", Promise.reject(error));
 
-            case 16:
+            case 21:
             case "end":
               return _context.stop();
           }

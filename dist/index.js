@@ -7962,7 +7962,7 @@ axiosRetry.isRetryableError = isRetryableError;
 /***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
 
 "use strict";
-// Axios v1.2.4 Copyright (c) 2023 Matt Zabriskie and contributors
+// Axios v1.2.5 Copyright (c) 2023 Matt Zabriskie and contributors
 
 
 const FormData$1 = __nccwpck_require__(4334);
@@ -9875,7 +9875,7 @@ function buildFullPath(baseURL, requestedURL) {
   return requestedURL;
 }
 
-const VERSION = "1.2.4";
+const VERSION = "1.2.5";
 
 function parseProtocol(url) {
   const match = /^([-+\w]{1,25})(:?\/\/|:)/.exec(url);

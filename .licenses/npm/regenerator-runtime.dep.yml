@@ -1,6 +1,6 @@
 ---
 name: regenerator-runtime
-version: 0.13.9
+version: 0.13.11
 type: npm
 summary: Runtime for Regenerator-compiled generator and async functions.
 homepage: 

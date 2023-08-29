@@ -29,7 +29,7 @@
   "homepage": "https://github.com/ChristopheLav/appinsights-annotate#readme",
   "dependencies": {
     "@actions/core": "^1.10.0",
-    "axios": "^1.4.0",
+    "axios": "^1.5.0",
     "axios-retry": "^3.7.0",
     "uuid": "^9.0.0"
   },

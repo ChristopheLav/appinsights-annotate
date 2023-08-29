@@ -44,7 +44,9 @@ function updateUsage(
   const newReadme: string[] = []
 
   // Append the beginning
-  newReadme.push(originalReadme.substring(0, startTokenIndex + startToken.length))
+  newReadme.push(
+    originalReadme.substring(0, startTokenIndex + startToken.length)
+  )
 
   // Build the new usage section
   newReadme.push('```yaml', `- uses: ${actionReference}`, '  with:')

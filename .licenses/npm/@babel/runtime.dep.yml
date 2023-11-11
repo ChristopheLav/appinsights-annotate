@@ -1,6 +1,6 @@
 ---
 name: "@babel/runtime"
-version: 7.20.13
+version: 7.23.2
 type: npm
 summary: babel's modular runtime helpers
 homepage: https://babel.dev/docs/en/next/babel-runtime

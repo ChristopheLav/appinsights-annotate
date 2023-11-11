@@ -1,5 +1,10 @@
 # Changelog
 
+## v1.1.0
+
+- Upgrade action to use the Node 20 (Node 16 EOL)
+- Bump dependencies to the last versions (see [full changelog](https://github.com/ChristopheLav/appinsights-annotate/compare/v1...v1.1.0))
+
 ## v1.0.2
 
 - Bump @typescript-eslint/parser from 5.27.1 to 5.28.0 (#9)

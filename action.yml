@@ -18,7 +18,7 @@ inputs:
     description: 'Allows to treat error as warning to prevent worlflow failure. It is may not important in some cases if the annotation can not be created.'
     default: false
 runs:
-  using: 'node16'
+  using: 'node20'
   main: 'dist/index.js'
 branding:
   icon: zap

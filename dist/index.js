@@ -30712,7 +30712,7 @@ __webpack_unused_export__ = isIdempotentRequestError;
 __webpack_unused_export__ = isNetworkOrIdempotentRequestError;
 __webpack_unused_export__ = exponentialDelay;
 exports.ZP = axiosRetry;
-__webpack_unused_export__ = void 0;
+__webpack_unused_export__ = __webpack_unused_export__ = void 0;
 
 var _regenerator = _interopRequireDefault(__nccwpck_require__(4210));
 
@@ -30818,29 +30818,41 @@ function exponentialDelay() {
 
   return delay + randomSum;
 }
-/**
- * Initializes and returns the retry state for the given request/config
- * @param  {AxiosRequestConfig} config
- * @return {Object}
- */
+/** @type {IAxiosRetryConfig} */
 
 
-function getCurrentState(config) {
-  var currentState = config[namespace] || {};
-  currentState.retryCount = currentState.retryCount || 0;
-  config[namespace] = currentState;
-  return currentState;
-}
+var DEFAULT_OPTIONS = {
+  retries: 3,
+  retryCondition: isNetworkOrIdempotentRequestError,
+  retryDelay: noDelay,
+  shouldResetTimeout: false,
+  onRetry: function onRetry() {}
+};
 /**
  * Returns the axios-retry options for the current request
  * @param  {AxiosRequestConfig} config
- * @param  {AxiosRetryConfig} defaultOptions
- * @return {AxiosRetryConfig}
+ * @param  {IAxiosRetryConfig} defaultOptions
+ * @return {IAxiosRetryConfigExtended}
+ */
+
+__webpack_unused_export__ = DEFAULT_OPTIONS;
+
+function getRequestOptions(config, defaultOptions) {
+  return _objectSpread(_objectSpread(_objectSpread({}, DEFAULT_OPTIONS), defaultOptions), config[namespace]);
+}
+/**
+ * Initializes and returns the retry state for the given request/config
+ * @param  {AxiosRequestConfig} config
+ * @param  {IAxiosRetryConfig} defaultOptions
+ * @return {IAxiosRetryConfigExtended}
  */
 
 
-function getRequestOptions(config, defaultOptions) {
-  return _objectSpread(_objectSpread({}, defaultOptions), config[namespace]);
+function getCurrentState(config, defaultOptions) {
+  var currentState = getRequestOptions(config, defaultOptions);
+  currentState.retryCount = currentState.retryCount || 0;
+  config[namespace] = currentState;
+  return currentState;
 }
 /**
  * @param  {Axios} axios
@@ -30862,16 +30874,14 @@ function fixConfig(axios, config) {
   }
 }
 /**
- * Checks retryCondition if request can be retried. Handles it's retruning value or Promise.
- * @param  {number} retries
- * @param  {Function} retryCondition
- * @param  {Object} currentState
+ * Checks retryCondition if request can be retried. Handles it's returning value or Promise.
+ * @param  {IAxiosRetryConfigExtended} currentState
  * @param  {Error} error
- * @return {boolean}
+ * @return {Promise<boolean>}
  */
 
 
-function shouldRetry(_x, _x2, _x3, _x4) {
+function shouldRetry(_x, _x2) {
   return _shouldRetry.apply(this, arguments);
 }
 /**
@@ -30933,55 +30943,55 @@ function shouldRetry(_x, _x2, _x3, _x4) {
 
 
 function _shouldRetry() {
-  _shouldRetry = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee2(retries, retryCondition, currentState, error) {
-    var shouldRetryOrPromise, shouldRetryPromiseResult;
+  _shouldRetry = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee2(currentState, error) {
+    var retries, retryCondition, shouldRetryOrPromise, shouldRetryPromiseResult;
     return _regenerator.default.wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
+            retries = currentState.retries, retryCondition = currentState.retryCondition;
             shouldRetryOrPromise = currentState.retryCount < retries && retryCondition(error); // This could be a promise
 
             if (!((0, _typeof2.default)(shouldRetryOrPromise) === 'object')) {
-              _context2.next = 12;
+              _context2.next = 13;
               break;
             }
 
-            _context2.prev = 2;
-            _context2.next = 5;
+            _context2.prev = 3;
+            _context2.next = 6;
             return shouldRetryOrPromise;
 
-          case 5:
+          case 6:
             shouldRetryPromiseResult = _context2.sent;
             return _context2.abrupt("return", shouldRetryPromiseResult !== false);
 
-          case 9:
-            _context2.prev = 9;
-            _context2.t0 = _context2["catch"](2);
+          case 10:
+            _context2.prev = 10;
+            _context2.t0 = _context2["catch"](3);
             return _context2.abrupt("return", false);
 
-          case 12:
+          case 13:
             return _context2.abrupt("return", shouldRetryOrPromise);
 
-          case 13:
+          case 14:
           case "end":
             return _context2.stop();
         }
       }
-    }, _callee2, null, [[2, 9]]);
+    }, _callee2, null, [[3, 10]]);
   }));
   return _shouldRetry.apply(this, arguments);
 }
 
 function axiosRetry(axios, defaultOptions) {
   var requestInterceptorId = axios.interceptors.request.use(function (config) {
-    var currentState = getCurrentState(config);
+    var currentState = getCurrentState(config, defaultOptions);
     currentState.lastRequestTime = Date.now();
     return config;
   });
   var responseInterceptorId = axios.interceptors.response.use(null, /*#__PURE__*/function () {
     var _ref = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee(error) {
-      var config, _getRequestOptions, _getRequestOptions$re, retries, _getRequestOptions$re2, retryCondition, _getRequestOptions$re3, retryDelay, _getRequestOptions$sh, shouldResetTimeout, _getRequestOptions$on, onRetry, currentState, delay, lastRequestDuration, timeout;
-
+      var config, currentState, retryDelay, shouldResetTimeout, onRetry, delay, lastRequestDuration, timeout;
       return _regenerator.default.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
@@ -30996,18 +31006,18 @@ function axiosRetry(axios, defaultOptions) {
               return _context.abrupt("return", Promise.reject(error));
 
             case 3:
-              _getRequestOptions = getRequestOptions(config, defaultOptions), _getRequestOptions$re = _getRequestOptions.retries, retries = _getRequestOptions$re === void 0 ? 3 : _getRequestOptions$re, _getRequestOptions$re2 = _getRequestOptions.retryCondition, retryCondition = _getRequestOptions$re2 === void 0 ? isNetworkOrIdempotentRequestError : _getRequestOptions$re2, _getRequestOptions$re3 = _getRequestOptions.retryDelay, retryDelay = _getRequestOptions$re3 === void 0 ? noDelay : _getRequestOptions$re3, _getRequestOptions$sh = _getRequestOptions.shouldResetTimeout, shouldResetTimeout = _getRequestOptions$sh === void 0 ? false : _getRequestOptions$sh, _getRequestOptions$on = _getRequestOptions.onRetry, onRetry = _getRequestOptions$on === void 0 ? function () {} : _getRequestOptions$on;
-              currentState = getCurrentState(config);
-              _context.next = 7;
-              return shouldRetry(retries, retryCondition, currentState, error);
+              currentState = getCurrentState(config, defaultOptions);
+              _context.next = 6;
+              return shouldRetry(currentState, error);
 
-            case 7:
+            case 6:
               if (!_context.sent) {
                 _context.next = 21;
                 break;
               }
 
               currentState.retryCount += 1;
+              retryDelay = currentState.retryDelay, shouldResetTimeout = currentState.shouldResetTimeout, onRetry = currentState.onRetry;
               delay = retryDelay(currentState.retryCount, error); // Axios fails merging this configuration to the default configuration because it has an issue
               // with circular structures: https://github.com/mzabriskie/axios/issues/370
 
@@ -31056,7 +31066,7 @@ function axiosRetry(axios, defaultOptions) {
       }, _callee);
     }));
 
-    return function (_x5) {
+    return function (_x3) {
       return _ref.apply(this, arguments);
     };
   }());

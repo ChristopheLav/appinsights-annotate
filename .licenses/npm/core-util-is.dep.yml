@@ -1,14 +1,14 @@
 ---
-name: "@fastify/busboy"
-version: 2.1.0
+name: core-util-is
+version: 1.0.3
 type: npm
-summary: A streaming parser for HTML form data for node.js
+summary: The `util.is*` functions introduced in Node v0.12.
 homepage: 
 license: mit
 licenses:
 - sources: LICENSE
-  text: |-
-    Copyright Brian White. All rights reserved.
+  text: |
+    Copyright Node.js contributors. All rights reserved.
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to

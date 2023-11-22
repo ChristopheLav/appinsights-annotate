@@ -1,15 +1,14 @@
 ---
-name: "@fastify/busboy"
-version: 2.1.0
+name: util
+version: 0.12.5
 type: npm
-summary: A streaming parser for HTML form data for node.js
-homepage: 
+summary: Node.js's util module for all engines
+homepage: https://github.com/browserify/node-util
 license: mit
 licenses:
 - sources: LICENSE
-  text: |-
-    Copyright Brian White. All rights reserved.
-
+  text: |
+    Copyright Joyent, Inc. and other Node contributors. All rights reserved.
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to
     deal in the Software without restriction, including without limitation the
@@ -27,4 +26,9 @@ licenses:
     LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
     IN THE SOFTWARE.
+- sources: README.md
+  text: |-
+    [MIT](./LICENSE)
+
+    [util]: https://nodejs.org/docs/latest-v8.x/api/util.html
 notices: []

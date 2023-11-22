@@ -1,15 +1,14 @@
 ---
-name: "@fastify/busboy"
-version: 2.1.0
+name: q
+version: 1.5.1
 type: npm
-summary: A streaming parser for HTML form data for node.js
-homepage: 
+summary: A library for promises (CommonJS/Promises/A,B,D)
+homepage: https://github.com/kriskowal/q
 license: mit
 licenses:
 - sources: LICENSE
-  text: |-
-    Copyright Brian White. All rights reserved.
-
+  text: |
+    Copyright 2009–2017 Kristopher Michael Kowal. All rights reserved.
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to
     deal in the Software without restriction, including without limitation the
@@ -27,4 +26,8 @@ licenses:
     LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
     IN THE SOFTWARE.
+- sources: README.md
+  text: |-
+    Copyright 2009–2017 Kristopher Michael Kowal and contributors
+    MIT License (enclosed)
 notices: []

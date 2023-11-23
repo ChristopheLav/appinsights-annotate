@@ -2,7 +2,7 @@ import * as core from '@actions/core'
 
 import {AuthorizerFactory} from 'azure-actions-webclient/AuthorizerFactory'
 
-import {addAnnotation} from './utilities/AnnotationUtility'
+import {addAnnotation} from './utilities/annotation-utility'
 
 async function run(): Promise<void> {
   try {

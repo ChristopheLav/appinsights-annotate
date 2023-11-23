@@ -17,19 +17,20 @@ jobs:
       matrix:
         runs-on: [ ubuntu-latest, macos-latest, windows-latest ]
     runs-on: ${{ matrix.runs-on }}
-
+    environment:
+      name: Testing
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
           ref: ${{ github.event.workflow_run.head_branch }}
 
-      # - name: Azure Login
-      #   uses: azure/login@v1
-      #   with:
-      #     client-id: ${{ secrets.AZURE_CLIENT_ID }}
-      #     tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-      #     subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
           
       - name: Create a test deployment annotation (failed state)
         uses: ./
@@ -42,5 +43,5 @@ jobs:
         uses: ./
         with:
           app-id: ${{ secrets.APPINSIGHTS_APP_ID }}
-          is-deployment-succeed: ${{ job.status == 'success' }}
+          is-deployment-succeed: ${{ steps.diff.conclusion == 'success' }}
           name: Test Deployment (${{ matrix.runs-on }})

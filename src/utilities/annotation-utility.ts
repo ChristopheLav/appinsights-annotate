@@ -1,7 +1,10 @@
+import * as core from '@actions/core'
+
 import {
   ApplicationInsightsResources,
   AzureApplicationInsights
 } from 'azure-actions-appservice-rest/Arm/azure-arm-appinsights'
+
 import {IAuthorizer} from 'azure-actions-webclient/Authorizer/IAuthorizer'
 
 import {v4 as uuidv4} from 'uuid'
@@ -14,42 +17,41 @@ export async function addAnnotation(
 ): Promise<void> {
   try {
     if (applicationId) {
-      let appinsightsResources: ApplicationInsightsResources =
+      const appinsightsResources: ApplicationInsightsResources =
         new ApplicationInsightsResources(endpoint)
-      var appInsightsResources = await appinsightsResources.list(undefined, [
+      const appInsightsResources = await appinsightsResources.list(undefined, [
         `$filter=ApplicationId eq '${applicationId}'`
       ])
       if (appInsightsResources.length > 0) {
-        var appInsightsId = appInsightsResources[0].id
+        const appInsightsId = appInsightsResources[0].id
         if (appInsightsId) {
-          var appInsights: AzureApplicationInsights =
+          const appInsights: AzureApplicationInsights =
             new AzureApplicationInsights(
               endpoint,
               appInsightsId.split('/')[4],
               appInsightsResources[0].name
             )
-          var releaseAnnotationData = getReleaseAnnotation(
+          const releaseAnnotationData = getReleaseAnnotation(
             deploymentName,
             isDeploymentSuccess
           )
           await appInsights.addReleaseAnnotation(releaseAnnotationData)
           console.log(
-            'Successfully added release annotation to the Application Insight :' +
-              appInsightsResources[0].name
+            `Successfully added release annotation to the Application Insight : ${appInsightsResources[0].name}`
           )
         } else {
-          console.log(
-            `##[debug]Invalid Application Insights resource. Skipping adding release annotation.`
+          core.debug(
+            `Invalid Application Insights resource. Skipping adding release annotation.`
           )
         }
       } else {
-        console.log(
-          `##[debug]Unable to find Application Insights resource with Instrumentation key ${applicationId}. Skipping adding release annotation.`
+        core.debug(
+          `Unable to find Application Insights resource with Instrumentation key ${applicationId}. Skipping adding release annotation.`
         )
       }
     } else {
-      console.log(
-        `##[debug]Application Insights is not configured for the App Service. Skipping adding release annotation.`
+      core.debug(
+        `Application Insights is not configured for the App Service. Skipping adding release annotation.`
       )
     }
   } catch (error: any) {

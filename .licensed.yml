@@ -13,7 +13,7 @@ allowed:
 reviewed:
   npm:
     - \@actions/http-client
-    - realpath
+    - fs.realpath
     - glob
     - readable-stream
     - sax

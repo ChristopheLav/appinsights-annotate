@@ -4,6 +4,14 @@
 
 - You now need to use the [Azure Login action](https://github.com/marketplace/actions/azure-login) to handle the authentication instead of the [deprecated API keys](https://learn.microsoft.com/en-us/azure/azure-monitor/app/release-and-work-item-insights?tabs=release-annotations#create-release-annotations-with-the-azure-cli)
   - The v1 of the action will stop to work by 31 August 2024 due to this depreciation
+- Annotation field changes:
+  - Added `Event Name`
+  - Added `Deployment Url`
+  - Added `Label` (values: Success or Error)
+  - Renamed `RunId` to `Run Id`
+  - Renamed `RunNumber` to `Run Number`
+  - Renamed `ServerUrl` to `Server Url`
+  - Removed `Message`
 - Bump dependencies to the last versions (see [full changelog](https://github.com/ChristopheLav/appinsights-annotate/compare/v1.1.0...v2.0.0))
 
 ## v1.1.0

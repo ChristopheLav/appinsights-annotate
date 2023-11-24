@@ -43,5 +43,5 @@ jobs:
         uses: ./
         with:
           app-id: ${{ secrets.APPINSIGHTS_APP_ID }}
-          is-deployment-succeed: ${{ steps.diff.conclusion == 'success' }}
+          is-deployment-succeed: success()
           name: Test Deployment (${{ matrix.runs-on }})

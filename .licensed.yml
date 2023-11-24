@@ -13,4 +13,9 @@ allowed:
 reviewed:
   npm:
     - \@actions/http-client
-    - axios-retry
+    - realpath
+    - glob
+    - readable-stream
+    - sax
+    - string_decoder
+    - typed-rest-client

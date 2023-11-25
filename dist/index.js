@@ -147,11 +147,11 @@ function addAnnotation(endpoint, applicationId, deploymentName, isDeploymentSucc
                     }
                 }
                 else {
-                    core.debug(`Unable to find Application Insights resource with Instrumentation key ${applicationId}. Skipping adding release annotation.`);
+                    throw Error(`Unable to find Application Insights resource with Instrumentation key ${applicationId}. Skipping adding release annotation.`);
                 }
             }
             else {
-                core.debug(`Application Insights is not configured for the App Service. Skipping adding release annotation.`);
+                throw Error(`Empty is not a valid value for ApplicationId to find an Application Insights resource.`);
             }
         }
         catch (error) {

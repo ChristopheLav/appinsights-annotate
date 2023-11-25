@@ -24,9 +24,9 @@ You need to set an annotation name, but the extension also publish automatically
 Refer [here](CHANGELOG.md) to the changelog.
 
 Breaking change of the V2: 
-- removed support of the Application Insights API keys [deprecated by Microsoft](https://learn.microsoft.com/en-us/azure/azure-monitor/app/release-and-work-item-insights?tabs=release-annotations#create-release-annotations-with-the-azure-cli)
-- you now need to use the Azure Login action before the use of this action to handle the Azure authentication
-- the v1 of the action will stop to work by 31 August 2024 due to this depreciation
+- Removed support of the Application Insights API keys [deprecated by Microsoft](https://learn.microsoft.com/en-us/azure/azure-monitor/app/release-and-work-item-insights?tabs=release-annotations#create-release-annotations-with-the-azure-cli)
+- You now need to use the Azure Login action before the use of this action to handle the Azure authentication
+- The v1 of the action will stop to work by 31 August 2024 due to this depreciation
 
 Official libs [azure-actions-appservice-rest](https://www.npmjs.com/package/azure-actions-appservice-rest) and [azure-actions-webclient](https://www.npmjs.com/package/azure-actions-webclient) used by Microsoft in their own actions are now used.
 

@@ -1,5 +1,9 @@
 # Changelog
 
+## v2.0.1
+
+- Fix the logic to find the targeted Application Insights resource
+
 ## v2.0.0
 
 - You now need to use the [Azure Login action](https://github.com/marketplace/actions/azure-login) to handle the authentication instead of the [deprecated API keys](https://learn.microsoft.com/en-us/azure/azure-monitor/app/release-and-work-item-insights?tabs=release-annotations#create-release-annotations-with-the-azure-cli)

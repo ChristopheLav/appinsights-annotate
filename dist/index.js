@@ -132,7 +132,7 @@ function addAnnotation(endpoint, applicationId, deploymentName, isDeploymentSucc
             if (applicationId) {
                 const appinsightsResources = new azure_arm_appinsights_1.ApplicationInsightsResources(endpoint);
                 const appInsightsResources = yield appinsightsResources.list(undefined, [
-                    `$filter=ApplicationId eq '${applicationId}'`
+                    `$filter=AppId eq '${applicationId}'`
                 ]);
                 if (appInsightsResources.length > 0) {
                     const appInsightsId = appInsightsResources[0].id;
@@ -147,11 +147,11 @@ function addAnnotation(endpoint, applicationId, deploymentName, isDeploymentSucc
                     }
                 }
                 else {
-                    core.debug(`Unable to find Application Insights resource with Instrumentation key ${applicationId}. Skipping adding release annotation.`);
+                    throw Error(`Unable to find Application Insights resource with Instrumentation key ${applicationId}.`);
                 }
             }
             else {
-                core.debug(`Application Insights is not configured for the App Service. Skipping adding release annotation.`);
+                throw Error(`Empty is not a valid value for ApplicationId to find an Application Insights resource.`);
             }
         }
         catch (error) {

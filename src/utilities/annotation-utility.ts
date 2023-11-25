@@ -23,7 +23,7 @@ export async function addAnnotation(
       const appinsightsResources: ApplicationInsightsResources =
         new ApplicationInsightsResources(endpoint)
       const appInsightsResources = await appinsightsResources.list(undefined, [
-        `$filter=ApplicationId eq '${applicationId}'`
+        `$filter=AppId eq '${applicationId}'`
       ])
       if (appInsightsResources.length > 0) {
         const appInsightsId = appInsightsResources[0].id
@@ -48,13 +48,13 @@ export async function addAnnotation(
           )
         }
       } else {
-        core.debug(
-          `Unable to find Application Insights resource with Instrumentation key ${applicationId}. Skipping adding release annotation.`
+        throw Error(
+          `Unable to find Application Insights resource with Instrumentation key ${applicationId}.`
         )
       }
     } else {
-      core.debug(
-        `Application Insights is not configured for the App Service. Skipping adding release annotation.`
+      throw Error(
+        `Empty is not a valid value for ApplicationId to find an Application Insights resource.`
       )
     }
   } catch (error: any) {

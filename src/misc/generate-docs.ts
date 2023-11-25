@@ -126,7 +126,7 @@ function updateUsage(
 }
 
 updateUsage(
-  'ChristopheLav/appinsights-annotate@v1',
+  'ChristopheLav/appinsights-annotate@v2',
   path.join(__dirname, '..', '..', 'action.yml'),
   path.join(__dirname, '..', '..', 'README.md')
 )

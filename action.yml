@@ -4,16 +4,14 @@ inputs:
   app-id:
     description: 'The `Application ID` of the Application Insights resource (available in the Azure Portal under `API Access`).'
     required: true
-  api-key:
-    description: >
-      The API Key of the Application Insights resource.
-      You can create an API Key in the Azure Portal under `API Access` (`Wite annotations` permission is required).
-    required: true
   name:
     description: >
       Name of your deployment. 
       You can set the version number or use the value `github.event.head_commit.message` to set the last commit message.
     required: true
+  is-deployment-succeed:
+    description: 'Indicates if the deployment is in success.'
+    default: true
   treat-error-as-warning:
     description: 'Allows to treat error as warning to prevent worlflow failure. It is may not important in some cases if the annotation can not be created.'
     default: false

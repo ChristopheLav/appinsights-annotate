@@ -49,7 +49,7 @@ export async function addAnnotation(
         }
       } else {
         throw Error(
-          `Unable to find Application Insights resource with Instrumentation key ${applicationId}. Skipping adding release annotation.`
+          `Unable to find Application Insights resource with Instrumentation key ${applicationId}.`
         )
       }
     } else {

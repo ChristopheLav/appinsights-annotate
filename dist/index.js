@@ -147,7 +147,7 @@ function addAnnotation(endpoint, applicationId, deploymentName, isDeploymentSucc
                     }
                 }
                 else {
-                    throw Error(`Unable to find Application Insights resource with Instrumentation key ${applicationId}. Skipping adding release annotation.`);
+                    throw Error(`Unable to find Application Insights resource with Instrumentation key ${applicationId}.`);
                 }
             }
             else {

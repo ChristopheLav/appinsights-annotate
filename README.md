@@ -28,7 +28,7 @@ Breaking change of the V2:
 - you now need to use the Azure Login action before the use of this action to handle the Azure authentication
 - the v1 of the action will stop to work by 31 August 2024 due to this depreciation
 
-Official libs `[azure-actions-appservice-rest](https://www.npmjs.com/package/azure-actions-appservice-rest)` and `[azure-actions-webclient](https://www.npmjs.com/package/azure-actions-webclient)` used by Microsoft in their own actions are now used.
+Official libs [azure-actions-appservice-rest](https://www.npmjs.com/package/azure-actions-appservice-rest) and [azure-actions-webclient](https://www.npmjs.com/package/azure-actions-webclient) used by Microsoft in their own actions are now used.
 
 ## Configuration
 

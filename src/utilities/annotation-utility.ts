@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable i18n-text/no-en */
+
 import * as core from '@actions/core'
 
 import {
@@ -36,7 +39,7 @@ export async function addAnnotation(
             isDeploymentSuccess
           )
           await appInsights.addReleaseAnnotation(releaseAnnotationData)
-          console.log(
+          core.debug(
             `Successfully added release annotation to the Application Insight : ${appInsightsResources[0].name}`
           )
         } else {
@@ -78,7 +81,7 @@ function getReleaseAnnotation(
     'Deployment Url': `https://github.com/${process.env.GITHUB_REPOSITORY}/commit/${process.env.GITHUB_SHA}/checks`
   }
 
-  let releaseAnnotation = {
+  const releaseAnnotation = {
     AnnotationName: deploymentName,
     Category: 'Deployment',
     EventTime: new Date(),

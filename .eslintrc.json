@@ -1,6 +1,9 @@
 {
     "plugins": ["@typescript-eslint"],
-    "extends": ["plugin:github/recommended"],
+    "extends": [
+      "plugin:github/recommended",
+      "plugin:prettier/recommended"
+    ],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
       "ecmaVersion": 9,

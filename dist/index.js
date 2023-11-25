@@ -41,7 +41,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const core = __importStar(__nccwpck_require__(2186));
 const AuthorizerFactory_1 = __nccwpck_require__(8510);
-const AnnotationUtility_1 = __nccwpck_require__(3742);
+const annotation_utility_1 = __nccwpck_require__(4236);
 function run() {
     var _a, _b;
     return __awaiter(this, void 0, void 0, function* () {
@@ -58,10 +58,10 @@ function run() {
                     endpoint = yield AuthorizerFactory_1.AuthorizerFactory.getAuthorizer();
                 }
                 catch (_c) {
-                    throw new Error("No credentials found. Please use the azure/login@v1 action before to attempt to create an Application Insights annotation.");
+                    throw new Error('No credentials found. Please use the azure/login@v1 action before to attempt to create an Application Insights annotation.');
                 }
                 core.debug(`Create the Application Insights deployment annotation`);
-                (0, AnnotationUtility_1.addAnnotation)(endpoint, applicationId, name, isDeploymentSuccess);
+                (0, annotation_utility_1.addAnnotation)(endpoint, applicationId, name, isDeploymentSuccess);
             }
             catch (error) {
                 if (continueOnError) {
@@ -82,11 +82,36 @@ run();
 
 /***/ }),
 
-/***/ 3742:
+/***/ 4236:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 "use strict";
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable i18n-text/no-en */
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -98,36 +123,39 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.addAnnotation = void 0;
+const core = __importStar(__nccwpck_require__(2186));
 const azure_arm_appinsights_1 = __nccwpck_require__(4550);
 const uuid_1 = __nccwpck_require__(5840);
 function addAnnotation(endpoint, applicationId, deploymentName, isDeploymentSuccess) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             if (applicationId) {
-                let appinsightsResources = new azure_arm_appinsights_1.ApplicationInsightsResources(endpoint);
-                var appInsightsResources = yield appinsightsResources.list(undefined, [`$filter=ApplicationId eq '${applicationId}'`]);
+                const appinsightsResources = new azure_arm_appinsights_1.ApplicationInsightsResources(endpoint);
+                const appInsightsResources = yield appinsightsResources.list(undefined, [
+                    `$filter=ApplicationId eq '${applicationId}'`
+                ]);
                 if (appInsightsResources.length > 0) {
-                    var appInsightsId = appInsightsResources[0].id;
+                    const appInsightsId = appInsightsResources[0].id;
                     if (appInsightsId) {
-                        var appInsights = new azure_arm_appinsights_1.AzureApplicationInsights(endpoint, appInsightsId.split('/')[4], appInsightsResources[0].name);
-                        var releaseAnnotationData = getReleaseAnnotation(deploymentName, isDeploymentSuccess);
+                        const appInsights = new azure_arm_appinsights_1.AzureApplicationInsights(endpoint, appInsightsId.split('/')[4], appInsightsResources[0].name);
+                        const releaseAnnotationData = getReleaseAnnotation(deploymentName, isDeploymentSuccess);
                         yield appInsights.addReleaseAnnotation(releaseAnnotationData);
-                        console.log("Successfully added release annotation to the Application Insight :" + appInsightsResources[0].name);
+                        core.debug(`Successfully added release annotation to the Application Insight : ${appInsightsResources[0].name}`);
                     }
                     else {
-                        console.log(`##[debug]Invalid Application Insights resource. Skipping adding release annotation.`);
+                        core.debug(`Invalid Application Insights resource. Skipping adding release annotation.`);
                     }
                 }
                 else {
-                    console.log(`##[debug]Unable to find Application Insights resource with Instrumentation key ${applicationId}. Skipping adding release annotation.`);
+                    core.debug(`Unable to find Application Insights resource with Instrumentation key ${applicationId}. Skipping adding release annotation.`);
                 }
             }
             else {
-                console.log(`##[debug]Application Insights is not configured for the App Service. Skipping adding release annotation.`);
+                core.debug(`Application Insights is not configured for the App Service. Skipping adding release annotation.`);
             }
         }
         catch (error) {
-            error.exception = "FailedAddingReleaseAnnotation";
+            error.exception = 'FailedAddingReleaseAnnotation';
             throw error;
         }
     });
@@ -135,24 +163,24 @@ function addAnnotation(endpoint, applicationId, deploymentName, isDeploymentSucc
 exports.addAnnotation = addAnnotation;
 function getReleaseAnnotation(deploymentName, isDeploymentSuccess) {
     const releaseAnnotationProperties = {
-        Label: isDeploymentSuccess ? "Success" : "Error", // Label decides the icon for annotation
-        "Server Url": process.env.GITHUB_SERVER_URL,
+        Label: isDeploymentSuccess ? 'Success' : 'Error', // Label decides the icon for annotation
+        'Server Url': process.env.GITHUB_SERVER_URL,
         Repository: process.env.GITHUB_REPOSITORY,
         Workflow: process.env.GITHUB_WORKFLOW,
-        "Run Id": process.env.GITHUB_RUN_ID,
-        "Run Number": process.env.GITHUB_RUN_NUMBER,
+        'Run Id': process.env.GITHUB_RUN_ID,
+        'Run Number': process.env.GITHUB_RUN_NUMBER,
         Branch: process.env.GITHUB_REF_NAME,
         SHA: process.env.GITHUB_SHA,
         By: process.env.GITHUB_ACTOR,
-        "Event Name": process.env.GITHUB_EVENT_NAME,
-        "Deployment Url": `https://github.com/${process.env.GITHUB_REPOSITORY}/commit/${process.env.GITHUB_SHA}/checks`
+        'Event Name': process.env.GITHUB_EVENT_NAME,
+        'Deployment Url': `https://github.com/${process.env.GITHUB_REPOSITORY}/commit/${process.env.GITHUB_SHA}/checks`
     };
-    let releaseAnnotation = {
-        "AnnotationName": deploymentName,
-        "Category": "Deployment",
-        "EventTime": new Date(),
-        "Id": (0, uuid_1.v4)(),
-        "Properties": JSON.stringify(releaseAnnotationProperties)
+    const releaseAnnotation = {
+        AnnotationName: deploymentName,
+        Category: 'Deployment',
+        EventTime: new Date(),
+        Id: (0, uuid_1.v4)(),
+        Properties: JSON.stringify(releaseAnnotationProperties)
     };
     return releaseAnnotation;
 }

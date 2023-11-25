@@ -132,7 +132,7 @@ function addAnnotation(endpoint, applicationId, deploymentName, isDeploymentSucc
             if (applicationId) {
                 const appinsightsResources = new azure_arm_appinsights_1.ApplicationInsightsResources(endpoint);
                 const appInsightsResources = yield appinsightsResources.list(undefined, [
-                    `$filter=ApplicationId eq '${applicationId}'`
+                    `$filter=AppId eq '${applicationId}'`
                 ]);
                 if (appInsightsResources.length > 0) {
                     const appInsightsId = appInsightsResources[0].id;

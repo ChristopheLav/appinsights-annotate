@@ -24,7 +24,7 @@ async function run(): Promise<void> {
       }
 
       core.debug(`Create the Application Insights deployment annotation`)
-      addAnnotation(endpoint, applicationId, name, isDeploymentSuccess)
+      await addAnnotation(endpoint, applicationId, name, isDeploymentSuccess)
     } catch (error) {
       if (continueOnError) {
         core.warning(`${(error as any)?.message ?? error}`)

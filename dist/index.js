@@ -61,7 +61,7 @@ function run() {
                     throw new Error('No credentials found. Please use the azure/login@v1 action before to attempt to create an Application Insights annotation.');
                 }
                 core.debug(`Create the Application Insights deployment annotation`);
-                (0, annotation_utility_1.addAnnotation)(endpoint, applicationId, name, isDeploymentSuccess);
+                yield (0, annotation_utility_1.addAnnotation)(endpoint, applicationId, name, isDeploymentSuccess);
             }
             catch (error) {
                 if (continueOnError) {

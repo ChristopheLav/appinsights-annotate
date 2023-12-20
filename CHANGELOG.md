@@ -1,5 +1,10 @@
 # Changelog
 
+## v2.0.2
+
+- Fix random issue with unreadeable status code when getting the Application Insights resource (missing await)
+- Bump dependencies to the last versions (see [full changelog](https://github.com/ChristopheLav/appinsights-annotate/compare/v2.0.1...v2.0.2))
+
 ## v2.0.1
 
 - Fix the logic to find the targeted Application Insights resource

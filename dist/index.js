@@ -43,8 +43,8 @@ const core = __importStar(__nccwpck_require__(2186));
 const AuthorizerFactory_1 = __nccwpck_require__(8510);
 const annotation_utility_1 = __nccwpck_require__(4236);
 function run() {
-    var _a, _b;
     return __awaiter(this, void 0, void 0, function* () {
+        var _a, _b;
         try {
             core.debug(`Reading action inputs`);
             const continueOnError = core.getBooleanInput('treat-error-as-warning');

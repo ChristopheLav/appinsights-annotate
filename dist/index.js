@@ -122,7 +122,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.addAnnotation = void 0;
+exports.addAnnotation = addAnnotation;
 const core = __importStar(__nccwpck_require__(2186));
 const azure_arm_appinsights_1 = __nccwpck_require__(4550);
 const uuid_1 = __nccwpck_require__(5840);
@@ -160,7 +160,6 @@ function addAnnotation(endpoint, applicationId, deploymentName, isDeploymentSucc
         }
     });
 }
-exports.addAnnotation = addAnnotation;
 function getReleaseAnnotation(deploymentName, isDeploymentSuccess) {
     const releaseAnnotationProperties = {
         Label: isDeploymentSuccess ? 'Success' : 'Error', // Label decides the icon for annotation

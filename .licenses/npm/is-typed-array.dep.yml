@@ -1,6 +1,6 @@
 ---
 name: is-typed-array
-version: 1.1.12
+version: 1.1.13
 type: npm
 summary: Is this value a JS Typed Array? This module works cross-realm/iframe, does
   not depend on `instanceof` or mutable properties, and despite ES6 Symbol.toStringTag.

@@ -1,6 +1,6 @@
 ---
 name: which-typed-array
-version: 1.1.13
+version: 1.1.15
 type: npm
 summary: Which kind of Typed Array is this JavaScript value? Works cross-realm, without
   `instanceof`, and despite Symbol.toStringTag.

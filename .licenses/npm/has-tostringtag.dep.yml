@@ -1,6 +1,6 @@
 ---
 name: has-tostringtag
-version: 1.0.0
+version: 1.0.2
 type: npm
 summary: Determine if the JS environment has `Symbol.toStringTag` support. Supports
   spec, or shams.

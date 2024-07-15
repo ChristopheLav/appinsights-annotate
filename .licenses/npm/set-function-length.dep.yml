@@ -1,6 +1,6 @@
 ---
 name: set-function-length
-version: 1.1.1
+version: 1.2.2
 type: npm
 summary: Set a function's length property
 homepage: https://github.com/ljharb/set-function-length#readme

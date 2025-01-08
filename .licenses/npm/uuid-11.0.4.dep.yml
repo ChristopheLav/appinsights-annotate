@@ -1,6 +1,6 @@
 ---
 name: uuid
-version: 11.0.3
+version: 11.0.4
 type: npm
 summary: RFC9562 UUIDs
 homepage: 

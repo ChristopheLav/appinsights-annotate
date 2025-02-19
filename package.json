@@ -34,7 +34,7 @@
     "uuid": "11.0.5"
   },
   "devDependencies": {
-    "@stylistic/eslint-plugin-ts": "4.0.0",
+    "@stylistic/eslint-plugin-ts": "4.0.1",
     "@types/node": "22.13.4",
     "@vercel/ncc": "0.38.3",
     "eslint": "9.20.1",

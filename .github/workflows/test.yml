@@ -13,6 +13,7 @@ permissions:
 
 jobs:
   test:
+    if: contains(github.event.workflow_run.event.inputs.labels, 'safe to test')
     strategy:
       matrix:
         runs-on: [ ubuntu-latest, macos-latest, windows-latest ]

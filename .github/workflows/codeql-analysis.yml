@@ -10,24 +10,15 @@ on:
 
 permissions:
   contents: read  # This is required for actions/checkout
+  actions: read # This is required for workflows in private repositories
   security-events: write # This is required for CodeQL analysis
   pull-requests: read # This is required for CodeQL analysis
+  packages: read # This is required to fetch internal or private CodeQL packs
 
 jobs:
   analyze:
     name: Analyze (${{ matrix.language }})
     runs-on: ${{ (matrix.language == 'swift' && 'macos-latest') || 'ubuntu-latest' }}
-    permissions:
-      # required for all workflows
-      security-events: write
-
-      # required to fetch internal or private CodeQL packs
-      packages: read
-
-      # only required for workflows in private repositories
-      actions: read
-      contents: read
-
     strategy:
       fail-fast: false
       matrix:

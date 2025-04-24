@@ -8,6 +8,11 @@ on:
   schedule:
     - cron: '33 3 * * 2'
 
+permissions:
+  contents: read  # This is required for actions/checkout
+  security-events: write # This is required for CodeQL analysis
+  pull-requests: read # This is required for CodeQL analysis
+
 jobs:
   analyze:
     name: Analyze (${{ matrix.language }})

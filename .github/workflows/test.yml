@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
   # Disabled due to untrust code execution risk on pull request
-  # Allow manual run only, and requires the check in repository pull request settings
+  # Allow manual run only, and requires the check in repository branch policy settings
   # workflow_run:
   #   workflows: ["Build and Checks"]
   #   types: 

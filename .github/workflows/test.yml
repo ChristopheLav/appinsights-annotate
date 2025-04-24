@@ -2,10 +2,13 @@ name: Test
 
 on:
   workflow_dispatch:
-  workflow_run:
-    workflows: ["Build and Checks"]
-    types: 
-      - completed
+
+  # Disabled due to untrust code execution risk on pull request
+  # Allow manual run only, and requires the check in repository pull request settings
+  # workflow_run:
+  #   workflows: ["Build and Checks"]
+  #   types: 
+  #     - completed
 
 permissions:
   id-token: write # This is required for requesting the JWT (azure login with OIDC)
@@ -13,10 +16,6 @@ permissions:
 
 jobs:
   test:
-    if: >
-      contains(github.event.workflow_run.event.inputs.labels, 'safe to test') &&
-      github.event.workflow_run.event == 'pull_request' &&
-      github.event.workflow_run.conclusion == 'success'
     strategy:
       matrix:
         runs-on: [ ubuntu-latest, macos-latest, windows-latest ]
@@ -27,7 +26,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.workflow_run.head_branch }}
           fetch-depth: 0
           submodules: false
 

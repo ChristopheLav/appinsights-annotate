@@ -1,16 +1,16 @@
 ---
-name: has-symbols
-version: 1.1.0
+name: dunder-proto
+version: 1.0.1
 type: npm
-summary: Determine if the JS environment has Symbol support. Supports spec, or shams.
-homepage: https://github.com/ljharb/has-symbols#readme
+summary: If available, the `Object.prototype.__proto__` accessor and mutator, call-bound
+homepage: https://github.com/es-shims/dunder-proto#readme
 license: mit
 licenses:
 - sources: LICENSE
   text: |
     MIT License
 
-    Copyright (c) 2016 Jordan Harband
+    Copyright (c) 2024 ECMAScript Shims
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal

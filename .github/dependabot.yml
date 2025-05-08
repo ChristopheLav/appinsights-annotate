@@ -1,14 +1,10 @@
 version: 2
 updates:
   - package-ecosystem: "npm"
-    directory: "/""
+    directory: "/"
     schedule:
       interval: "daily"
-    reviewers:
-      - "ChristopheLav"
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "weekly"
-    assignees:
-      - "ChristopheLav"

@@ -3393,6 +3393,7 @@ function copyFile(srcFile, destFile, force) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.getFormattedError = void 0;
 function getFormattedError(error) {
     if (error && error.message) {
         if (error.statusCode) {
@@ -3424,6 +3425,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.ApplicationInsightsResources = exports.AzureApplicationInsights = void 0;
 const core = __nccwpck_require__(7484);
 const AzureRestClient_1 = __nccwpck_require__(7143);
 const ErrorHandlerUtility_1 = __nccwpck_require__(7008);

@@ -1,6 +1,6 @@
 ---
 name: azure-actions-appservice-rest
-version: 1.3.23
+version: 1.3.28
 type: npm
 summary: Azure resource manager and kudu node rest module
 homepage: https://github.com/Microsoft/pipelines-appservice-lib/tree/master/packages/appservice-rest

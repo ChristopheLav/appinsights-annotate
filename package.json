@@ -36,7 +36,7 @@
   "devDependencies": {
     "@stylistic/eslint-plugin-ts": "4.4.1",
     "@types/node": "24.5.1",
-    "@vercel/ncc": "0.38.3",
+    "@vercel/ncc": "0.38.4",
     "eslint": "9.35.0",
     "eslint-plugin-github": "6.0.0",
     "js-yaml": "4.1.0",

@@ -5,6 +5,13 @@ on:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
+    paths-ignore:
+      - '**/*.md'
+      - '**/*.txt'
+      - 'dist/**'
+      - 'imgs/**'
+      - '.licenses/**'
+      - 'LICENSE'
   schedule:
     - cron: '33 3 * * 2'
 
@@ -36,6 +43,9 @@ jobs:
       with:
         languages: ${{ matrix.language }}
         build-mode: ${{ matrix.build-mode }}
+        config: |
+          paths-ignore:
+            - 'dist/**'
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v3

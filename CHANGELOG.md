@@ -2,7 +2,7 @@
 
 ## v2.1.0
 
-**This version is mainly related to dependencies updates and upgrade action to use Node 24 (Node 20 EOL).**
+**This version is mainly related to dependency updates and upgrade action to use Node 24 (Node 20 EOL).**
 
 - Bump @typescript-eslint/parser from 6.15.0 to 6.16.0 by @dependabot[bot] in https://github.com/ChristopheLav/appinsights-annotate/pull/307
 - Bump @typescript-eslint/parser from 6.16.0 to 6.17.0 by @dependabot[bot] in https://github.com/ChristopheLav/appinsights-annotate/pull/308

@@ -2,7 +2,7 @@
 
 ## v2.1.2
 
-**This version is related to dependency updates.**
+**This version includes dependency updates and a Node 24 URL compatibility change.**
 
 - Bump typescript-eslint from 8.51.0 to 8.52.0 by @dependabot[bot] in https://github.com/ChristopheLav/appinsights-annotate/pull/712
 - Bump @actions/core from 2.0.1 to 2.0.2 by @dependabot[bot] in https://github.com/ChristopheLav/appinsights-annotate/pull/713

@@ -7,10 +7,36 @@ function isAbsoluteUrl(value) {
   return /^[a-zA-Z][a-zA-Z\d+.-]*:/.test(value)
 }
 
+function toLegacyRelativeParsedUrl(value) {
+  const hashIndex = value.indexOf('#')
+  const valueWithoutHash = hashIndex >= 0 ? value.slice(0, hashIndex) : value
+  const queryIndex = valueWithoutHash.indexOf('?')
+  const pathname = queryIndex >= 0 ? valueWithoutHash.slice(0, queryIndex) : valueWithoutHash
+  const search = queryIndex >= 0 ? valueWithoutHash.slice(queryIndex) : ''
+
+  return {
+    href: value,
+    path: pathname ? `${pathname}${search}` : search || null,
+    pathname: pathname || null,
+    search: search || null,
+    query: search ? search.slice(1) : null,
+    protocol: null,
+    host: null,
+    hostname: null,
+    port: null,
+    auth: null
+  }
+}
+
 function toLegacyParsedUrl(input) {
   const value = String(input ?? '')
   const absolute = isAbsoluteUrl(value)
   const base = 'http://localhost'
+  const shouldPreserveRelativePath = !absolute && !value.startsWith('/') && !value.startsWith('//')
+
+  if (shouldPreserveRelativePath) {
+    return toLegacyRelativeParsedUrl(value)
+  }
 
   let parsed
   try {

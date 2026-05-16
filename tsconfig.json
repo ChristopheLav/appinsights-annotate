@@ -1,17 +1,10 @@
 {
+    "extends": "./tsconfig.base.json",
     "compilerOptions": {
-        "target": "es6",
         "module": "commonjs",
-        "lib": [
-            "es6"
-        ],
         "outDir": "./lib",
         "rootDir": "./src",
-        "declaration": true,
-        "strict": true,
-        "noImplicitAny": false,
-        "esModuleInterop": true,
-        "skipLibCheck": true
+        "declaration": true
     },
     "exclude": [
         "__test__",

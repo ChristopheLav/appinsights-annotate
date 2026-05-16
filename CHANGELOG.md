@@ -1,5 +1,67 @@
 # Changelog
 
+## v2.1.2
+
+**This version is related to dependency updates.**
+
+- Bump typescript-eslint from 8.51.0 to 8.52.0 by @dependabot[bot] in https://github.com/ChristopheLav/appinsights-annotate/pull/712
+- Bump @actions/core from 2.0.1 to 2.0.2 by @dependabot[bot] in https://github.com/ChristopheLav/appinsights-annotate/pull/713
+- Bump @types/node from 25.0.3 to 25.0.6 by @dependabot[bot] in https://github.com/ChristopheLav/appinsights-annotate/pull/715
+- Bump typescript-eslint from 8.52.0 to 8.53.0 by @dependabot[bot] in https://github.com/ChristopheLav/appinsights-annotate/pull/714
+- Bump @types/node from 25.0.6 to 25.0.8 by @dependabot[bot] in https://github.com/ChristopheLav/appinsights-annotate/pull/716
+- Bump prettier from 3.7.4 to 3.8.0 by @dependabot[bot] in https://github.com/ChristopheLav/appinsights-annotate/pull/718
+- Bump @types/node from 25.0.8 to 25.0.9 by @dependabot[bot] in https://github.com/ChristopheLav/appinsights-annotate/pull/717
+- Bump typescript-eslint from 8.53.0 to 8.53.1 by @dependabot[bot] in https://github.com/ChristopheLav/appinsights-annotate/pull/719
+- Bump prettier from 3.8.0 to 3.8.1 by @dependabot[bot] in https://github.com/ChristopheLav/appinsights-annotate/pull/720
+- Bump @types/node from 25.0.9 to 25.0.10 by @dependabot[bot] in https://github.com/ChristopheLav/appinsights-annotate/pull/721
+- Bump typescript-eslint from 8.53.1 to 8.54.0 by @dependabot[bot] in https://github.com/ChristopheLav/appinsights-annotate/pull/722
+- Bump @types/node from 25.0.10 to 25.1.0 by @dependabot[bot] in https://github.com/ChristopheLav/appinsights-annotate/pull/725
+- Bump @types/node from 25.1.0 to 25.2.0 by @dependabot[bot] in https://github.com/ChristopheLav/appinsights-annotate/pull/727
+- Bump @types/node from 25.2.0 to 25.2.1 by @dependabot[bot] in https://github.com/ChristopheLav/appinsights-annotate/pull/728
+- Bump typescript-eslint from 8.54.0 to 8.55.0 by @dependabot[bot] in https://github.com/ChristopheLav/appinsights-annotate/pull/729
+- Bump @types/node from 25.2.1 to 25.2.2 by @dependabot[bot] in https://github.com/ChristopheLav/appinsights-annotate/pull/730
+- Bump @types/node from 25.2.2 to 25.2.3 by @dependabot[bot] in https://github.com/ChristopheLav/appinsights-annotate/pull/732
+- Bump qs from 6.14.1 to 6.14.2 by @dependabot[bot] in https://github.com/ChristopheLav/appinsights-annotate/pull/733
+- Bump azure-actions-appservice-rest from 1.3.34 to 1.3.35 by @dependabot[bot] in https://github.com/ChristopheLav/appinsights-annotate/pull/723
+- Bump typescript-eslint from 8.55.0 to 8.56.0 by @dependabot[bot] in https://github.com/ChristopheLav/appinsights-annotate/pull/734
+- Bump @types/node from 25.2.3 to 25.3.0 by @dependabot[bot] in https://github.com/ChristopheLav/appinsights-annotate/pull/737
+- Bump typescript-eslint from 8.56.0 to 8.56.1 by @dependabot[bot] in https://github.com/ChristopheLav/appinsights-annotate/pull/739
+- Bump @types/node from 25.3.0 to 25.3.1 by @dependabot[bot] in https://github.com/ChristopheLav/appinsights-annotate/pull/742
+- Bump @types/node from 25.3.1 to 25.3.2 by @dependabot[bot] in https://github.com/ChristopheLav/appinsights-annotate/pull/744
+- Bump @types/node from 25.3.2 to 25.3.3 by @dependabot[bot] in https://github.com/ChristopheLav/appinsights-annotate/pull/746
+- Bump actions/upload-artifact from 6 to 7 by @dependabot[bot] in https://github.com/ChristopheLav/appinsights-annotate/pull/747
+- Bump minimatch from 3.1.2 to 3.1.5 by @dependabot[bot] in https://github.com/ChristopheLav/appinsights-annotate/pull/745
+- Bump underscore from 1.13.6 to 1.13.8 by @dependabot[bot] in https://github.com/ChristopheLav/appinsights-annotate/pull/748
+- Bump azure-actions-appservice-rest from 1.3.35 to 1.3.37 by @dependabot[bot] in https://github.com/ChristopheLav/appinsights-annotate/pull/736
+- Bump @types/node from 25.3.3 to 25.5.0 by @dependabot[bot] in https://github.com/ChristopheLav/appinsights-annotate/pull/751
+- Bump typescript-eslint from 8.56.1 to 8.57.0 by @dependabot[bot] in https://github.com/ChristopheLav/appinsights-annotate/pull/750
+- Bump typescript-eslint from 8.57.0 to 8.57.1 by @dependabot[bot] in https://github.com/ChristopheLav/appinsights-annotate/pull/752
+- Bump azure/login from 2 to 3 by @dependabot[bot] in https://github.com/ChristopheLav/appinsights-annotate/pull/756
+- Bump flatted from 3.3.2 to 3.4.2 by @dependabot[bot] in https://github.com/ChristopheLav/appinsights-annotate/pull/757
+- Bump typescript-eslint from 8.57.1 to 8.57.2 by @dependabot[bot] in https://github.com/ChristopheLav/appinsights-annotate/pull/754
+- Bump picomatch from 4.0.3 to 4.0.4 by @dependabot[bot] in https://github.com/ChristopheLav/appinsights-annotate/pull/758
+- Bump typescript-eslint from 8.57.2 to 8.58.0 by @dependabot[bot] in https://github.com/ChristopheLav/appinsights-annotate/pull/760
+- Bump azure-actions-appservice-rest from 1.3.37 to 1.3.38 by @dependabot[bot] in https://github.com/ChristopheLav/appinsights-annotate/pull/759
+- Bump brace-expansion from 1.1.12 to 1.1.13 by @dependabot[bot] in https://github.com/ChristopheLav/appinsights-annotate/pull/761
+- Bump @types/node from 25.5.0 to 25.5.2 by @dependabot[bot] in https://github.com/ChristopheLav/appinsights-annotate/pull/762
+- Bump typescript-eslint from 8.58.0 to 8.58.1 by @dependabot[bot] in https://github.com/ChristopheLav/appinsights-annotate/pull/764
+- Bump prettier from 3.8.1 to 3.8.2 by @dependabot[bot] in https://github.com/ChristopheLav/appinsights-annotate/pull/766
+- Bump @types/node from 25.5.2 to 25.6.0 by @dependabot[bot] in https://github.com/ChristopheLav/appinsights-annotate/pull/765
+- Bump typescript-eslint from 8.58.1 to 8.58.2 by @dependabot[bot] in https://github.com/ChristopheLav/appinsights-annotate/pull/767
+- Bump prettier from 3.8.2 to 3.8.3 by @dependabot[bot] in https://github.com/ChristopheLav/appinsights-annotate/pull/768
+- Bump typescript-eslint from 8.58.2 to 8.59.0 by @dependabot[bot] in https://github.com/ChristopheLav/appinsights-annotate/pull/770
+- Bump typescript-eslint from 8.59.0 to 8.59.1 by @dependabot[bot] in https://github.com/ChristopheLav/appinsights-annotate/pull/773
+- Bump typescript-eslint from 8.59.1 to 8.59.2 by @dependabot[bot] in https://github.com/ChristopheLav/appinsights-annotate/pull/775
+- Bump @types/node from 25.6.0 to 25.6.1 by @dependabot[bot] in https://github.com/ChristopheLav/appinsights-annotate/pull/776
+- Bump @types/node from 25.6.1 to 25.6.2 by @dependabot[bot] in https://github.com/ChristopheLav/appinsights-annotate/pull/777
+- Bump @types/node from 25.6.2 to 25.7.0 by @dependabot[bot] in https://github.com/ChristopheLav/appinsights-annotate/pull/778
+- Bump typescript-eslint from 8.59.2 to 8.59.3 by @dependabot[bot] in https://github.com/ChristopheLav/appinsights-annotate/pull/779
+- Bump @types/node from 25.7.0 to 25.8.0 by @dependabot[bot] in https://github.com/ChristopheLav/appinsights-annotate/pull/780
+- Bump uuid from 13.0.0 to 14.0.0 by @dependabot[bot] in https://github.com/ChristopheLav/appinsights-annotate/pull/772
+- Bump @actions/core from 2.0.2 to 3.0.1 by @dependabot[bot] in https://github.com/ChristopheLav/appinsights-annotate/pull/726
+- Add URL compatibility shims for Node 24 (DEP0169) by @ChristopheLav in https://github.com/ChristopheLav/appinsights-annotate/pull/782
+- Bump typescript from 5.9.3 to 6.0.3 by @dependabot[bot] in https://github.com/ChristopheLav/appinsights-annotate/pull/769
+
 ## v2.1.1
 
 **This version is related to dependency updates and a security fix related to `qs` dependency.**

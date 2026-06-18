@@ -9,7 +9,7 @@
     "format-check": "prettier --check '**/*.ts'",
     "lint": "eslint src/**/*.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "licensed-install": "brew install licensed@5.1.0",
+    "licensed-install": "brew install licensed@5.1",
     "licensed-check": "licensed status",
     "licensed-generate": "licensed cache"
   },

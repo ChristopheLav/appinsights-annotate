@@ -29,10 +29,6 @@ jobs:
         with:
           ruby-version: 4.0.5
 
-      - name: Set up Homebrew
-        id: set-up-homebrew
-        uses: Homebrew/actions/setup-homebrew@main
-
       - run: npm run licensed-install
 
       - run: npm run licensed-check

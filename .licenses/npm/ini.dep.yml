@@ -3,7 +3,7 @@ name: ini
 version: 1.3.8
 type: npm
 summary: An ini encoder/decoder for node
-homepage: 
+homepage:
 license: isc
 licenses:
 - sources: LICENSE

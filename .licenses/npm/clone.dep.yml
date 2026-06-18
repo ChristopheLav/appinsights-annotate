@@ -3,7 +3,7 @@ name: clone
 version: 1.0.4
 type: npm
 summary: deep cloning of objects and arrays
-homepage: 
+homepage:
 license: mit
 licenses:
 - sources: LICENSE

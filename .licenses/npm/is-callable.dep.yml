@@ -4,7 +4,7 @@ version: 1.2.7
 type: npm
 summary: Is this JS value callable? Works with Functions and GeneratorFunctions, despite
   ES6 @@toStringTag.
-homepage: 
+homepage:
 license: mit
 licenses:
 - sources: LICENSE
@@ -32,3 +32,4 @@ licenses:
     SOFTWARE.
 
 notices: []
+...

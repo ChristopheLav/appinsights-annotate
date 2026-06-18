@@ -3,7 +3,7 @@ name: querystring
 version: 0.2.1
 type: npm
 summary: Node's querystring module for all engines.
-homepage: 
+homepage:
 license: mit
 licenses:
 - sources: LICENSE

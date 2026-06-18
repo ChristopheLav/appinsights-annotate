@@ -4,7 +4,7 @@ version: 2.0.5
 type: npm
 summary: A tiny wrapper around Node streams2 Transform to avoid explicit subclassing
   noise
-homepage: 
+homepage:
 license: mit
 licenses:
 - sources: LICENSE.md

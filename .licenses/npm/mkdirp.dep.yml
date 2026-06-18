@@ -3,7 +3,7 @@ name: mkdirp
 version: 0.5.6
 type: npm
 summary: Recursively mkdir, like `mkdir -p`
-homepage: 
+homepage:
 license: other
 licenses:
 - sources: LICENSE

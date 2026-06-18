@@ -3,7 +3,7 @@ name: readable-stream
 version: 2.3.8
 type: npm
 summary: Streams3, a user-land copy of the stream library from Node.js
-homepage: 
+homepage:
 license: other
 licenses:
 - sources: LICENSE

@@ -3,7 +3,7 @@ name: is-generator-function
 version: 1.0.10
 type: npm
 summary: Determine if a function is a native generator function.
-homepage: 
+homepage:
 license: mit
 licenses:
 - sources: LICENSE

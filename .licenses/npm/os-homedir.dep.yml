@@ -3,7 +3,7 @@ name: os-homedir
 version: 1.0.2
 type: npm
 summary: Node.js 4 `os.homedir()` ponyfill
-homepage: 
+homepage:
 license: mit
 licenses:
 - sources: license

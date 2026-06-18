@@ -9,8 +9,8 @@
     "format-check": "prettier --check '**/*.ts'",
     "lint": "eslint src/**/*.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "licensed-check": "src/misc/licensed-check.sh",
-    "licensed-generate": "src/misc/licensed-generate.sh"
+    "licensed-check": "licensed status",
+    "licensed-generate": "licensed cache"
   },
   "repository": {
     "type": "git",

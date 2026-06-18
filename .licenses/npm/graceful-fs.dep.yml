@@ -3,7 +3,7 @@ name: graceful-fs
 version: 4.2.11
 type: npm
 summary: A drop-in replacement for fs, making various improvements.
-homepage: 
+homepage:
 license: isc
 licenses:
 - sources: LICENSE

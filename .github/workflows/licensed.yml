@@ -21,5 +21,14 @@ jobs:
     name: Check licenses
     steps:
       - uses: actions/checkout@v6
-      - run: npm ci
+      
+      - run: npm ci --ignore-scripts
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 4.0.x
+
+      - run: gem install licensed -v '~> 3.0'
+
       - run: npm run licensed-check

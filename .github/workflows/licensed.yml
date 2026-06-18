@@ -29,15 +29,6 @@ jobs:
         with:
           ruby-version: 4.0.5
 
-      - name: Install licensed tool
-        run: |
-          cd "$RUNNER_TEMP"
-          curl -Lfs -o licensed.tar.gz https://github.com/licensee/licensed/archive/refs/tags/v5.1.0.tar.gz
-          tar -xzf licensed.tar.gz
-          cd licensed-5.1.0
-          bundle install
+      - run: gem install licensed -v '~> 5.1'
 
-      - name: Check cached dependency records
-        run: |
-          cd ${{ github.workspace }}
-          BUNDLE_GEMFILE=$RUNNER_TEMP/licensed-5.1.0/Gemfile bundle exec $RUNNER_TEMP/licensed-5.1.0/exe/licensed status
+      - run: npm run licensed-check

@@ -29,6 +29,6 @@ jobs:
         with:
           ruby-version: 4.0.5
 
-      - run: gem install licensed -v '~> 3.0'
+      - run: gem install licensed -v '~> 5.1'
 
       - run: npm run licensed-check

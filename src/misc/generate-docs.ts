@@ -4,15 +4,15 @@ import * as path from 'path'
 import * as yaml from 'js-yaml'
 
 interface ActionYaml {
-  name: string;
-  description: string;
+  name: string
+  description: string
   inputs: {
     [key: string]: {
-      description: string;
-      default?: string;
-      required?: boolean;
-    };
-  };
+      description: string
+      default?: string
+      required?: boolean
+    }
+  }
 }
 
 //
@@ -33,7 +33,9 @@ function updateUsage(
   }
 
   // Load the action.yml
-  const actionYaml = yaml.load(fs.readFileSync(actionYamlPath).toString()) as ActionYaml
+  const actionYaml = yaml.load(
+    fs.readFileSync(actionYamlPath).toString()
+  ) as ActionYaml
 
   // Load the README
   const originalReadme = fs.readFileSync(readmePath).toString()

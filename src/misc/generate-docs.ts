@@ -3,6 +3,18 @@ import * as os from 'os'
 import * as path from 'path'
 import * as yaml from 'js-yaml'
 
+interface ActionYaml {
+  name: string
+  description: string
+  inputs: {
+    [key: string]: {
+      description: string
+      default?: string
+      required?: boolean
+    }
+  }
+}
+
 //
 // SUMMARY
 //
@@ -21,7 +33,9 @@ function updateUsage(
   }
 
   // Load the action.yml
-  const actionYaml = yaml.load(fs.readFileSync(actionYamlPath).toString())
+  const actionYaml = yaml.load(
+    fs.readFileSync(actionYamlPath).toString()
+  ) as ActionYaml
 
   // Load the README
   const originalReadme = fs.readFileSync(readmePath).toString()
@@ -62,7 +76,7 @@ function updateUsage(
 
     // Constrain the width of the description
     const width = 80
-    let description = (input.description as string)
+    let description = input.description
       .trimEnd()
       .replace(/\r\n/g, '\n') // Convert CR to LF
       .replace(/ +/g, ' ') //    Squash consecutive spaces
@@ -99,7 +113,7 @@ function updateUsage(
 
     if (input.default !== undefined) {
       // Append blank line if description had paragraphs
-      if ((input.description as string).trimEnd().match(/\n[ ]*\r?\n/)) {
+      if (input.description.trimEnd().match(/\n[ ]*\r?\n/)) {
         newReadme.push(`    #`)
       }
 

@@ -37,7 +37,7 @@
   "devDependencies": {
     "@stylistic/eslint-plugin-ts": "4.4.1",
     "@types/node": "26.2.0",
-    "esbuild": "0.28.1",
+    "esbuild": "0.28.2",
     "eslint": "9.39.2",
     "eslint-plugin-github": "6.1.2",
     "js-yaml": "5.2.3",
